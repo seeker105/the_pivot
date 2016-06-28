@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_constants
   before_action :set_cart
+  #before_filter is depricated; use before_action 
   helper_method :current_user, :current_admin?
 
   def set_constants

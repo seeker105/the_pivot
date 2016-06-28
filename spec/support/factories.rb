@@ -44,4 +44,14 @@ FactoryGirl.define do
   sequence :name do |n|
     "item_#{n}"
   end
+
+  sequence :business_name do |n|
+    "Business_#{n}"
+  end
+
+  factory :business do
+    name :business_name
+    slug 
+
+    factory do
 end
