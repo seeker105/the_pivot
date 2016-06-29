@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
     item = create(:item)
     user = create(:user)
 
-    expect(item.high_bid) == nil
+    expect(item.high_bid).to eq nil
   end
 
   it "returns the current highest bidder" do
@@ -94,7 +94,7 @@ RSpec.describe Item, type: :model do
     item = create(:item)
     user = create(:user)
 
-    expect(item.high_bidder) == nil
+    expect(item.high_bidder).to eq nil
   end
 
 end
