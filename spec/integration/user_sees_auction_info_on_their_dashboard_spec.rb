@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "user sees auction info on their dashbaord" do
+RSpec.feature "user sees auction info on their dashboard" do
   scenario "they visit their dashboard to see their data" do
     user = create(:user_with_bids)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -10,10 +10,9 @@ RSpec.feature "user sees auction info on their dashbaord" do
     item_lost = user.items.last
     item_lost.update_attributes(status: 2)
 
-    byebug
     visit dashboard_path
 
-    expect(page).to have_content("Welcome, #{user.username}")
+    expect(page).to have_content("Welcome, #{user.name}")
 
     within("#open_auction") do
       expect(page).to have_content("Open Auctions")
