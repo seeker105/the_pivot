@@ -14,7 +14,7 @@ RSpec.feature "The Item class closes the correct auctions" do
 
     Item.update_status
 
-    byebug
+    #byebug
 
     # puts "item " + x.to_s
     # puts item.end_time

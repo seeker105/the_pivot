@@ -13,14 +13,14 @@ RSpec.describe Item, type: :model do
     it { should have_many(:order_items) }
   end
 
-  scenario "active and retired statuses" do
+  scenario "open and closed statuses" do
     item = create(:item)
-    expect(item.active?).to eq true
-    expect(item.retired?).to eq false
+    expect(item.open?).to eq true
+    expect(item.closed?).to eq false
 
     retired_item = create(:item, status: 1)
-    expect(retired_item.retired?).to eq true
-    expect(retired_item.active?).to eq false
+    expect(retired_item.closed?).to eq true
+    expect(retired_item.open?).to eq false
   end
 
   scenario "no item is created in db without passing validations" do
