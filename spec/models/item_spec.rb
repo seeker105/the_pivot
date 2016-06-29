@@ -53,4 +53,48 @@ RSpec.describe Item, type: :model do
     expect(items[0].subtotal(order.id)).to eq 5.99
   end
 
+  it "returns the current highest bid" do
+    item = create(:item)
+    user = create(:user)
+
+    bid1 = item.bids.create(price: 10.00, user: user)
+    expect(item.high_bid).to eq 10.00
+
+    bid2 = item.bids.create(price: 15.00, user: user)
+    expect(item.high_bid).to eq 15.00
+
+    bid3 = item.bids.create(price: 20.00, user: user)
+    expect(item.high_bid).to eq 20.00
+  end
+
+  it "returns nil for high_bid when no bids have been placed" do
+    item = create(:item)
+    user = create(:user)
+
+    expect(item.high_bid) == nil
+  end
+
+  it "returns the current highest bidder" do
+    item = create(:item)
+    user1 = create(:user)
+    user2 = create(:user)
+    user3 = create(:user)
+
+    bid1 = item.bids.create(price: 10.00, user: user1)
+    expect(item.high_bidder).to eq user1
+
+    bid2 = item.bids.create(price: 15.00, user: user2)
+    expect(item.high_bidder).to eq user2
+
+    bid3 = item.bids.create(price: 20.00, user: user3)
+    expect(item.high_bidder).to eq user3
+  end
+
+  it "returns nil for high_bidder when no bids placed" do
+    item = create(:item)
+    user = create(:user)
+
+    expect(item.high_bidder) == nil
+  end
+
 end

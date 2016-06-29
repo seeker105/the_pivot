@@ -25,6 +25,6 @@ class Item < ActiveRecord::Base
   end
 
   def high_bidder
-    Bid.find_by(price: high_bid).user
+    Bid.count > 0 ? Bid.find_by(price: high_bid).user : nil
   end
 end
