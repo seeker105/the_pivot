@@ -30,11 +30,16 @@ class Item < ActiveRecord::Base
   end
 
   def self.update_status
-    where(status: 0).each do |item|
-      if item.end_time <= DateTime.now
-        puts "Should be 1"
-        item.update_attribute(:status, 1)
-      end
-    end
+    where(status: 0).where("end_time < ?", DateTime.now).update_all(status: 1)
+
+
+
+    #
+    # where(status: 0, ).each do |item|
+    #   if item.end_time <= DateTime.now
+    #     puts "Should be 1"
+    #     item.update_attribute(:status, 1)
+    #   end
+    # end
   end
 end
