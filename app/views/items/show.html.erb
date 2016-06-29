@@ -15,5 +15,15 @@
       Item Retired
     </p>
     <% end  %>
+    <% if @item.high_bid == nil %>
+    <p>
+      No current bids
+    </p>
+    <% else %>
+      Highest Bid: <%= @item.high_bid %>
+      Highest Bidder: <%= @item.high_bidder.name %>
+    <% end %>
+    <%= render partial: "new_bid", locals: {item: @item}%>
+
   </div>
 </div>

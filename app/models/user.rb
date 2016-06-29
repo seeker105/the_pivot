@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :bids
 
   validates :username, presence: :true, uniqueness: :true
   validates :password, presence: :true
