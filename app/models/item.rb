@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
-  enum status: ["active", "retired"]
+  enum status: ["open", "closed"]
 
   def quantity(order_id)
     order_item = self.order_items.find_by(order_id: order_id)
@@ -27,5 +27,14 @@ class Item < ActiveRecord::Base
 
   def high_bidder
     Bid.count > 0 ? Bid.find_by(price: high_bid).user : nil
+  end
+
+  def self.update_status
+    where(status: 0).each do |item|
+      if item.end_time <= DateTime.now
+        puts "Should be 1"
+        item.update_attribute(:status, 1)
+      end
+    end
   end
 end
