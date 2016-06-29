@@ -97,4 +97,13 @@ RSpec.describe Item, type: :model do
     expect(item.high_bidder).to eq nil
   end
 
+  it "changes the status of items whose auctions are elapsed to closed" do
+    item1 = create(:item, status:  0, end_time: DateTime.now.at_beginning_of_day)
+    item2 = create(:item, status:  0, end_time: DateTime.now.at_beginning_of_day + 24.hour)
+
+    Item.update_status
+
+    expect(Item.first.status).to eq("closed")
+    expect(Item.last.status).to eq("open")
+  end
 end
