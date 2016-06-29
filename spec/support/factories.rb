@@ -16,12 +16,30 @@ FactoryGirl.define do
     end
   end
 
+  sequence :name do |n|
+    "item_#{n}"
+  end
+
+  sequence :price do |n|
+    10 +  n
+  end
+
+  factory :bid do
+    price
+    user
+    item
+  end
+
   factory :item do
     name
     description "test description"
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status 0
+
+    factory :item_with_bids do
+      bids { create_list(:bid, 3) }
+    end
   end
 
   factory :category do
@@ -41,7 +59,4 @@ FactoryGirl.define do
     "User #{n}"
   end
 
-  sequence :name do |n|
-    "item_#{n}"
-  end
 end

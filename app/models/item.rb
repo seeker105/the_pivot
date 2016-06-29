@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
-  enum status: ["active", "retired"]
+  enum status: ["open", "won", "lost"]
 
   def quantity(order_id)
     order_item = self.order_items.find_by(order_id: order_id)
