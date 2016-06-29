@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
   end
 
   def high_bid
-    self.bids.maximum('price')
+    bids.maximum('price')
   end
 
   def high_bidder
