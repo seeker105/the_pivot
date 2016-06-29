@@ -44,4 +44,10 @@ FactoryGirl.define do
   sequence :name do |n|
     "item_#{n}"
   end
+
+  factory :bid do 
+    user
+    item
+    price "6.99"
+  end
 end
