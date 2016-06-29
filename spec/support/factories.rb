@@ -14,6 +14,11 @@ FactoryGirl.define do
     factory :user_with_orders do
       orders { create_list(:order, 3) }
     end
+
+    factory :user_with_bids do
+      bids { create_list(:bid, 3)}
+      # bids { create(:bid), create(:bid, status: 1), create(:bid, status: 2)}
+    end
   end
 
   sequence :name do |n|

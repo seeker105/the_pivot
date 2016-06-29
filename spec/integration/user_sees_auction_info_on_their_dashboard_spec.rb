@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.feature "user sees auction info on their dashbaord" do
   scenario "they visit their dashboard to see their data" do
-    user = create(:user)
+    user = create(:user_with_bids)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    item_open = user.items.first
+    item_won = user.items[1]
+    item_won.update_attributes(status: 1)
+    item_lost = user.items.last
+    item_lost.update_attributes(status: 2)
 
-    item_open = create(:item_with_bids)
-    # bid_a = user.bids.create(price: )
-    item_won = create(:item_with_bids, status: 1)
-
-    item_lost = create(:item_with_bids, status: 2)
     byebug
     visit dashboard_path
 
