@@ -67,11 +67,11 @@ RSpec.describe Item, type: :model do
     expect(item.high_bid).to eq 20.00
   end
 
-  it "returns nil for high_bid when no bids have been placed" do
+  it "returns 0.0 for high_bid when no bids have been placed" do
     item = create(:item)
     user = create(:user)
 
-    expect(item.high_bid).to eq nil
+    expect(item.high_bid).to eq 0.0
   end
 
   it "returns the current highest bidder" do
