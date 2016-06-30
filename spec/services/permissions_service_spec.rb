@@ -7,7 +7,7 @@ RSpec.feature do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit "/items/#{item.id}"
+    visit item_path(item.id)
 
     expect(page).to have_content(item.name)
     expect(page).to have_content(item.description)

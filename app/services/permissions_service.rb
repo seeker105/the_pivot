@@ -11,7 +11,6 @@ class PermissionsService
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
     return true if controller == "items"   && action == "index"
-    byebug
     if user
       if user.platform_admin?
         return true if controller == "items"   && action == "show"
