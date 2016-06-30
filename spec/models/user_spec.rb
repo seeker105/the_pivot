@@ -36,4 +36,15 @@ RSpec.describe User, type: :model do
     expect(user_4.save).to eq false
     expect(user_5.save).to eq false
   end
+  
+  it "can find all the open auctions for a specific user" do
+    user = create(:user_with_bids)
+    item1, item2, item3 = user.items
+    item1.update(status: 1)
+
+    expect(user.items.count).to eq(3)
+    expect(user.open_items.count).to eq(2)
+
+  end
+
 end

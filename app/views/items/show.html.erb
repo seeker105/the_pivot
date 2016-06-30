@@ -8,12 +8,20 @@
     <p><%= @item.description %></p>
     <h5>$<%= @item.price %></h5>
 
-    <% if @item.active? %>
-    <%= button_to "Add to cart", cart_items_path(id: @item), class: "btn" %>
+    <% if @item.open? %>
+      <% if @item.high_bid == 0.00 %>
+      <p>
+        No current bids
+      </p>
+      <% else %>
+        Highest Bid: <%= @item.high_bid %>
+        Highest Bidder: <%= @item.high_bidder.name %>
+      <% end %>
+      <%= render partial: "new_bid", locals: {item: @item}%>
     <% else %>
-    <p>
-      Item Retired
-    </p>
+      <p>
+      This item's auction has ended!
+      </p>
     <% end  %>
   </div>
 </div>

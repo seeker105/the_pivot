@@ -1,0 +1,10 @@
+<%= form_for ([item, @bid]) do |f| %>
+  <%= f.number_field :price, min: (item.high_bid+1.00) %>
+  <%= f.submit "Place Bid"  %>
+<% end  %>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

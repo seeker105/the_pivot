@@ -8,3 +8,10 @@
 <% if @user.orders.any? %>
   <%= link_to "Order History", orders_path %>
 <% end %>
+
+
+<% if @user.items.any? %>
+  <%= render partial: 'auction_table' %>
+<% else %>
+  <p> No auction information yet! </p>
+<% end %>
