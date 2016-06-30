@@ -11,8 +11,6 @@ RSpec.feature "user without bids" do
 
     visit dashboard_path
 
-    save_and_open_page
-
     expect(page).to have_content("No auction information yet!")
     
     expect(page).to_not have_content("Open Auctions")
@@ -20,5 +18,4 @@ RSpec.feature "user without bids" do
     expect(page).to_not have_content("Closed Auctions")
 
   end
-
 end
