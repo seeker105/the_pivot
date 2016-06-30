@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
     self.items.where(status: "open")
   end
 
+  def platform_admin?
+    self.platform_admin
+  end
 
 
 end

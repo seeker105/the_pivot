@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629211153) do
+ActiveRecord::Schema.define(version: 20160630205721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,17 +65,6 @@ ActiveRecord::Schema.define(version: 20160629211153) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "item_id"
-  end
-
-  add_index "ratings", ["item_id"], name: "index_ratings_on_item_id", using: :btree
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
@@ -88,11 +77,10 @@ ActiveRecord::Schema.define(version: 20160629211153) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.boolean  "platform_admin"
   end
 
   add_foreign_key "bids", "items"
   add_foreign_key "bids", "users"
   add_foreign_key "orders", "users"
-  add_foreign_key "ratings", "items"
-  add_foreign_key "ratings", "users"
 end
