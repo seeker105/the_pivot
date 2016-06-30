@@ -41,9 +41,14 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status 0
+    end_time Time.now
 
     factory :item_with_bids do
       bids { create_list(:bid, 3) }
+    end
+
+    factory :ended_item_with_bid do
+      bid
     end
   end
 
