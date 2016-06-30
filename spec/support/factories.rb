@@ -11,9 +11,36 @@ FactoryGirl.define do
     zip "1234"
     role "default"
 
-    factory :user_with_orders do
-      orders { create_list(:order, 3) }
+    factory :user_with_bid do
+       after(:create) do |user|
+         create(:bid, user: user)
+       end
     end
+
+    factory :user_with_bids do
+       3.times do
+         after(:create) do |user|
+           create(:bid, user: user)
+         end
+       end
+    end
+
+
+
+  end
+
+  sequence :name do |n|
+    "item_#{n}"
+  end
+
+  sequence :price do |n|
+    10 +  n
+  end
+
+  factory :bid do
+    price
+    user
+    item
   end
 
   factory :item do
@@ -22,7 +49,18 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status 0
+    end_time Time.now 
+
+    factory :item_with_bids do
+      bids { create_list(:bid, 3) }
+    end
+
+    factory :ended_item_with_bid do
+      # bids { generate(:bid) }
+      bids { create_list(:bid, 3) }
+    end
   end
+
 
   factory :category do
     name
@@ -41,7 +79,4 @@ FactoryGirl.define do
     "User #{n}"
   end
 
-  sequence :name do |n|
-    "item_#{n}"
-  end
 end

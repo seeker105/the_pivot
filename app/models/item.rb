@@ -32,4 +32,5 @@ class Item < ActiveRecord::Base
   def self.update_status
     where(status: 0).where("end_time < ?", DateTime.now).update_all(status: 1)
   end
+
 end

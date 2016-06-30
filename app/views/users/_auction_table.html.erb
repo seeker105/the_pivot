@@ -1,0 +1,34 @@
+<table class="table" id="open_auction">
+  <caption>Open Auctions</caption>
+  <tr>
+    <th>Item</th>
+    <th>Current High Bid</th>
+    <th>Current High Bidder</th>
+    <!-- <th>Auction End Time</th> -->
+  </tr>
+  <% @user.open_items.each do |item| %>
+  <tr>
+    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
+    <td><%= link_to item.name, item_path(item)%> </td>
+    <td><%= item.high_bid%> </td>
+    <td><%= item.high_bidder.username%> </td>
+  </tr>
+  <% end %>
+</table>
+
+<table class="table" id="won_auction">
+  <caption>Auctions Won</caption>
+  <tr>
+    <th>Item</th>
+    <th>Price Paid</th>
+    <!-- <th>Payment Date</th> -->
+  </tr>
+  <% @user.items.each do |item| %>
+  <tr>
+    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
+    <td><%= link_to item.name, item_path(item)%> </td>
+    <td><%= item.high_bid%> </td>
+    <td><%= item.high_bidder.username%> </td>
+  </tr>
+  <% end %>
+</table>

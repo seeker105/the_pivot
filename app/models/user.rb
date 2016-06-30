@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :orders
   has_many :bids
+  has_many :items, through: :bids
 
   validates :username, presence: :true, uniqueness: :true
   validates :password, presence: :true
@@ -20,5 +21,11 @@ class User < ActiveRecord::Base
 
   def to_param
   end
+
+  def open_items
+    self.items.where(status: "open")
+  end
+
+
 
 end
