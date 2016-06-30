@@ -24,9 +24,6 @@ FactoryGirl.define do
          end
        end
     end
-
-
-
   end
 
   sequence :name do |n|
@@ -49,7 +46,7 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status 0
-    end_time Time.now 
+    end_time Time.now
 
     factory :item_with_bids do
       bids { create_list(:bid, 3) }
@@ -65,15 +62,15 @@ FactoryGirl.define do
   factory :category do
     name
   end
-
-  factory :order do
-    user
-    status 0
-
-    factory "order_with_items" do
-      items { create_list(:item, 3) }
-    end
-  end
+  #
+  # factory :order do
+  #   user
+  #   status 0
+  #
+  #   factory "order_with_items" do
+  #     items { create_list(:item, 3) }
+  #   end
+  # end
 
   sequence :username do |n|
     "User #{n}"
