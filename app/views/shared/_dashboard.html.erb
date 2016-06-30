@@ -12,4 +12,6 @@
 
 <% if @user.items.any? %>
   <%= render partial: 'auction_table' %>
+<% else %>
+  <p> No auction information yet! </p>
 <% end %>

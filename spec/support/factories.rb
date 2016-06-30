@@ -11,14 +11,23 @@ FactoryGirl.define do
     zip "1234"
     role "default"
 
-    factory :user_with_orders do
-      orders { create_list(:order, 3) }
+    # factory :user_with_orders do
+    #   orders { create_list(:order, 3) }
+    # end
+
+    # THIS IS BAD: when bid is called, it calls was a user, which will call bid
+    # which tries to associate itself with user _again_!
+
+    # factory :user_with_bid do
+    #   bids { create_list(:bid, 1) }
+    # end
+
+    factory :user_with_bid do
+       after(:create) do |user|
+         create(:bid, user: user)
+       end
     end
 
-    factory :user_with_bids do
-      bids { create_list(:bid, 3)}
-      # bids { create(:bid), create(:bid, status: 1), create(:bid, status: 2)}
-    end
   end
 
   sequence :name do |n|
@@ -41,16 +50,18 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status 0
-    end_time Time.now
+    end_time Time.now 
 
     factory :item_with_bids do
       bids { create_list(:bid, 3) }
     end
 
     factory :ended_item_with_bid do
-      bid
+      # bids { generate(:bid) }
+      bids { create_list(:bid, 3) }
     end
   end
+
 
   factory :category do
     name
