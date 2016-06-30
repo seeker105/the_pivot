@@ -28,6 +28,16 @@ FactoryGirl.define do
        end
     end
 
+    factory :user_with_bids do
+       3.times do
+         after(:create) do |user|
+           create(:bid, user: user)
+         end
+       end
+    end
+
+
+
   end
 
   sequence :name do |n|

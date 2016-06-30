@@ -33,8 +33,4 @@ class Item < ActiveRecord::Base
     where(status: 0).where("end_time < ?", DateTime.now).update_all(status: 1)
   end
 
-  def self.opened
-    where(status: "open")
-  end
-
 end

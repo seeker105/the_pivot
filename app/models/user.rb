@@ -22,4 +22,10 @@ class User < ActiveRecord::Base
   def to_param
   end
 
+  def open_items
+    self.items.where(status: "open")
+  end
+
+
+
 end
