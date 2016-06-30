@@ -13,14 +13,14 @@ RSpec.describe Item, type: :model do
     it { should have_many(:order_items) }
   end
 
-  scenario "active and retired statuses" do
+  scenario "open and closed statuses" do
     item = create(:item)
-    expect(item.active?).to eq true
-    expect(item.retired?).to eq false
+    expect(item.open?).to eq true
+    expect(item.closed?).to eq false
 
     retired_item = create(:item, status: 1)
-    expect(retired_item.retired?).to eq true
-    expect(retired_item.active?).to eq false
+    expect(retired_item.closed?).to eq true
+    expect(retired_item.open?).to eq false
   end
 
   scenario "no item is created in db without passing validations" do
@@ -97,4 +97,13 @@ RSpec.describe Item, type: :model do
     expect(item.high_bidder).to eq nil
   end
 
+  it "changes the status of items whose auctions are elapsed to closed" do
+    item1 = create(:item, status:  0, end_time: DateTime.now.at_beginning_of_day)
+    item2 = create(:item, status:  0, end_time: DateTime.now.at_beginning_of_day + 24.hour)
+
+    Item.update_status
+
+    expect(Item.first.status).to eq("closed")
+    expect(Item.last.status).to eq("open")
+  end
 end
