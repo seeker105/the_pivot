@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :index, :create]
   resources :cart_items, only: [:create, :index, :destroy, :update]
 
+  resources :items do
+    resources :bids, only: [:index, :create]
+  end
+
   resources :orders, only: [:index, :create, :show, :edit, :update]
 
   namespace :admin do

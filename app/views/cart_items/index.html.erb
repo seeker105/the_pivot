@@ -14,7 +14,6 @@
   <th>Remove</th>
 <% @cart.obj_contents.each do |item| %>
   <tr id="<%= "cart-table-#{item.name}" %>">
-    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= item.name %></td>
     <td><%= item.description %></td>
     <td>$<%= item.price %></td>

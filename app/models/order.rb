@@ -1,5 +1,3 @@
-require 'twilio-ruby'
-
 class Order < ActiveRecord::Base
   attr_accessor :cart
 
