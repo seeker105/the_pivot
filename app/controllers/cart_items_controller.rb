@@ -1,7 +1,6 @@
 class CartItemsController< ApplicationController
   def index
     @cart = set_cart
-    @order = Order.new
   end
 
   def create
