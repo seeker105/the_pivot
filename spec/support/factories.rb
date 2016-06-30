@@ -11,17 +11,6 @@ FactoryGirl.define do
     zip "1234"
     role "default"
 
-    # factory :user_with_orders do
-    #   orders { create_list(:order, 3) }
-    # end
-
-    # THIS IS BAD: when bid is called, it calls was a user, which will call bid
-    # which tries to associate itself with user _again_!
-
-    # factory :user_with_bid do
-    #   bids { create_list(:bid, 1) }
-    # end
-
     factory :user_with_bid do
        after(:create) do |user|
          create(:bid, user: user)
