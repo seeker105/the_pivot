@@ -27,4 +27,9 @@ class Item < ActiveRecord::Base
   def high_bidder
     Bid.find_by(price: high_bid).user
   end
+
+  def self.opened
+    where(status: "open")
+  end
+
 end

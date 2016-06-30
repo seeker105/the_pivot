@@ -19,12 +19,14 @@ RSpec.feature "user sees auction info on their dashboard" do
       expect(page).to have_link(item_open.name)
       expect(page).to have_content(item_open.high_bid)
       expect(page).to have_content(item_open.high_bidder.username)
+      expect(page).not_to have_content(item_lost.name)
+      expect(page).not_to have_content(item_won.name)
     end
 
     within("#won_auction") do
       expect(page).to have_content("Auctions Won")
-      expect(page).to have_content(item_won.name)
-      expect(page).to have_content(item_won.price)
+      expect(page).to have_link(item_won.name)
+      expect(page).to have_content(item_won.hig_bid)
       expect(page).not_to have_content(item_open.name)
       expect(page).not_to have_content(item_lost.name)
     end
