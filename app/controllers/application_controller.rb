@@ -2,16 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_constants
-  before_action :set_cart
   # before_action :authorize!
   helper_method :current_user, :current_admin?
 
   def set_constants
     @categories = Category.all
-  end
-
-  def set_cart
-    @cart = Cart.new(session[:cart])
   end
 
   def current_user
