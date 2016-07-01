@@ -18,11 +18,13 @@ FactoryGirl.define do
     end
 
     factory :user_with_bids do
-       3.times do
-         after(:create) do |user|
-           create(:bid, user: user)
-         end
-       end
+      transient do
+        bid_count 3
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:bid, evaluator.bid_count, user: user)
+      end
     end
   end
 
@@ -45,16 +47,17 @@ FactoryGirl.define do
     description "test description"
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
-    status 0
+    status "open"
     end_time Time.now
 
     factory :item_with_bids do
-      bids { create_list(:bid, 3) }
-    end
+      transient do
+        bid_count 3
+      end
 
-    factory :ended_item_with_bid do
-      # bids { generate(:bid) }
-      bids { create_list(:bid, 3) }
+      after(:create) do |item, evaluator|
+        create_list(:bid, evaluator.bid_count, item: item)
+      end
     end
   end
 
@@ -62,15 +65,6 @@ FactoryGirl.define do
   factory :category do
     name
   end
-  #
-  # factory :order do
-  #   user
-  #   status 0
-  #
-  #   factory "order_with_items" do
-  #     items { create_list(:item, 3) }
-  #   end
-  # end
 
   sequence :username do |n|
     "User #{n}"

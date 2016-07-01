@@ -8,6 +8,7 @@ class BidsController < ApplicationController
     unless @bid.save
       flash[:error] = @bid.errors.full_messages.join(", ")
     end
+      flash[:success] = "Sucessfully placed bid! $#{@bid.price}"
       redirect_to item_path(@item)
   end
 
