@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_constants
   before_action :set_cart
-  before_action :authorize!
+  # before_action :authorize!
   helper_method :current_user, :current_admin?
 
   def set_constants

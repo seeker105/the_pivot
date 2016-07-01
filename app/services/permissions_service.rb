@@ -8,16 +8,17 @@ class PermissionsService
   end
 
   def allow?
+    return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
+    return true if controller == "items"    && action == "show"
+    return true if controller == "items"    && action == "index"
     if user
       if user.platform_admin?
-        return true if controller == "items"   && action == "show"
+
       elsif business && user == business.owner
-        return true if controller == "items"   && action == "index"
 
       elsif business && business.admins.include?(user)
-        return true if controller == "sessions" && action == "new"
 
       else
 
