@@ -23,9 +23,18 @@ class User < ActiveRecord::Base
   end
 
   def open_items
-    self.items.where(status: "open")
+    self.items.open.distinct
   end
 
+  def won_items
+    self.items.find_all { |item| self == item.high_bidder && item.closed? }.uniq
+  end
 
+  def closed_items
+    self.items.closed.distinct
+  end
 
+  def lost_items
+    self.items.find_all { |item| self != item.high_bidder && item.closed? }.uniq
+  end
 end
