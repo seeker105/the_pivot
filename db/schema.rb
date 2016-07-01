@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630205721) do
+ActiveRecord::Schema.define(version: 20160630232921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,27 @@ ActiveRecord::Schema.define(version: 20160630205721) do
 
   add_index "bids", ["item_id"], name: "index_bids_on_item_id", using: :btree
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
+
+  create_table "business_admins", force: :cascade do |t|
+    t.integer  "business_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "business_admins", ["business_id"], name: "index_business_admins_on_business_id", using: :btree
+  add_index "business_admins", ["user_id"], name: "index_business_admins_on_user_id", using: :btree
+
+  create_table "businesses", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active",     default: false
+    t.string   "slug"
+    t.integer  "owner_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "businesses", ["owner_id"], name: "index_businesses_on_owner_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -68,8 +89,8 @@ ActiveRecord::Schema.define(version: 20160630205721) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "role",            default: 0
     t.string   "email"
     t.string   "name"
@@ -77,10 +98,13 @@ ActiveRecord::Schema.define(version: 20160630205721) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.boolean  "platform_admin"
+    t.boolean  "platform_admin",  default: false
   end
 
   add_foreign_key "bids", "items"
   add_foreign_key "bids", "users"
+  add_foreign_key "business_admins", "businesses"
+  add_foreign_key "business_admins", "users"
+  add_foreign_key "businesses", "users", column: "owner_id"
   add_foreign_key "orders", "users"
 end

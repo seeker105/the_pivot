@@ -1,23 +1,25 @@
 class PermissionsService
 
-  def initialize(user, controller, action)
+  def initialize(user, controller, action, business_id)
     @_user = user
     @_controller = controller
     @_action = action
+    @_business = Business.find_by(id: business_id)
   end
 
   def allow?
     return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
-    return true if controller == "items"   && action == "index"
     if user
+      # byebug
       if user.platform_admin?
         return true if controller == "items"   && action == "show"
+      # byebug
+      elsif business && user == business.owner
+        return true if controller == "items"   && action == "index"
 
-      # elsif user.store_owner? TODO add these functions
-      #
-      # elsif user.store_admin?
+      # elsif business && user.store_admin?  TODO add these functions
 
       else
 
@@ -36,6 +38,10 @@ class PermissionsService
 
   def action
     @_action
+  end
+
+  def business
+    @_business
   end
 
 end
