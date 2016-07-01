@@ -27,4 +27,23 @@ RSpec.feature do
     expect(page).to have_content(item1.name)
     expect(page).to have_content(item2.name)
   end
+
+  scenario "checks for a business admin" do
+    item1 = create(:item, name: "Hipchick Granite Hipster")
+    item2 = create(:item, name: "Why the road crossed the duck")
+    bus_owner = create(:user)
+    user = create(:user)
+    # byebug
+    business = Business.create(name: "Rubynomics", owner: bus_owner)
+    business.users << user
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit login_path(business_id: business.id)
+
+    within ('#login') do
+      expect(page).to have_content("Username")
+      expect(page).to have_content("Password")
+    end
+  end
 end

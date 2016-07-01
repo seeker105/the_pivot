@@ -8,7 +8,6 @@ class PermissionsService
   end
 
   def allow?
-    return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
     if user
@@ -19,7 +18,8 @@ class PermissionsService
       elsif business && user == business.owner
         return true if controller == "items"   && action == "index"
 
-      # elsif business && user.store_admin?  TODO add these functions
+      elsif business && business.users.include?(user)
+        return true if controller == "sessions" && action == "new"
 
       else
 
