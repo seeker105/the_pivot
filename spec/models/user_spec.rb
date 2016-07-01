@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { should have_many(:orders) }
-
-  it { should respond_to(:orders) }
   it { should respond_to(:username) }
   it { should respond_to(:password) }
 
@@ -36,7 +33,7 @@ RSpec.describe User, type: :model do
     expect(user_4.save).to eq false
     expect(user_5.save).to eq false
   end
-  
+
   it "can find all the open auctions for a specific user" do
     user = create(:user_with_bids)
     item1, item2, item3 = user.items

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629211153) do
+ActiveRecord::Schema.define(version: 20160701002236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,26 +45,6 @@ ActiveRecord::Schema.define(version: 20160629211153) do
     t.datetime "end_time"
   end
 
-  create_table "order_items", id: false, force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "item_id",  null: false
-    t.string  "quantity"
-    t.decimal "subtotal"
-  end
-
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
-
-  create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "status",      default: 0
-    t.datetime "finished_at"
-  end
-
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
-
   create_table "ratings", force: :cascade do |t|
     t.integer  "score"
     t.datetime "created_at", null: false
@@ -92,7 +72,6 @@ ActiveRecord::Schema.define(version: 20160629211153) do
 
   add_foreign_key "bids", "items"
   add_foreign_key "bids", "users"
-  add_foreign_key "orders", "users"
   add_foreign_key "ratings", "items"
   add_foreign_key "ratings", "users"
 end

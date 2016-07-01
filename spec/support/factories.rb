@@ -48,7 +48,7 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status "open"
-    end_time Time.now 
+    end_time Time.now
 
     factory :item_with_bids do
       transient do
@@ -64,15 +64,6 @@ FactoryGirl.define do
 
   factory :category do
     name
-  end
-
-  factory :order do
-    user
-    status 0
-
-    factory "order_with_items" do
-      items { create_list(:item, 3) }
-    end
   end
 
   sequence :username do |n|
