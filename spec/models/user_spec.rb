@@ -51,11 +51,13 @@ RSpec.describe User, type: :model do
       expect(user.bids).to be_blank
       expect(user.won_items.count).to eq(0)
   end
+
   it "can identify a single auction won by a specific user" do
     user = create(:user_with_bids)
 
     item1, item2, item3 = user.items
 
+    dup_bid = create(:bid, price: 1000, item: item1, user: user)
     item1.update(status: "closed")
 
     expect(user.won_items.count).to eq(1)
@@ -82,9 +84,9 @@ RSpec.describe User, type: :model do
 
     item1, item2, item3 = user1.items
 
+    dup_bid = create(:bid, price: 100, item: item1, user: user1)
     user2 = create(:user)
-    # create a bid that outbids user1
-    create(:bid, price: 100, user: user2, item: item1)
+    create(:bid, price: 1000, user: user2, item: item1)
 
     item1.update(status: "closed")
     item2.update(status: "closed")
@@ -99,7 +101,16 @@ RSpec.describe User, type: :model do
     expect(user2.open_items.count).to eq(0)
     expect(user1.closed_items.count).to eq(2)
     expect(user2.closed_items.count).to eq(1)
+  end
 
+  it "it can return a single item that has multiple bids from the same user" do
+    user = create(:user_with_bid)
+    item = user.items.last
+    
+    new_bid = create(:bid, price: 1000, user: user, item: item)
 
+    expect(item.bids.count).to eq(2)
+
+    expect(user.open_items.count).to eq(1)
   end
 end

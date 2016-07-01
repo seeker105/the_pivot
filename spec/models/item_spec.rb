@@ -106,18 +106,4 @@ RSpec.describe Item, type: :model do
     expect(Item.first.status).to eq("closed")
     expect(Item.last.status).to eq("open")
   end
-
-  context "it does not have bids" do
-    it "cannot identity the winning bidder" do
-    end
-  end
-
-
-  context "it has bids" do
-    it "can identify the winning bidder" do
-    end
-
-    it "has no winning bidder if the auction is active" do
-    end
-  end
 end

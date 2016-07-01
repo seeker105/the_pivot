@@ -76,7 +76,7 @@ FactoryGirl.define do
   end
 
   sequence :username do |n|
-    "User #{n + 1}"
+    "User #{n}"
   end
 
 end
