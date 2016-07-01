@@ -29,12 +29,10 @@ class ApplicationController < ActionController::Base
 
 private
   def authorize!
-    # byebug
     redirect_to(root_url, danger: "You are not authorized") unless authorized?
   end
 
   def authorized?
-    # byebug
     PermissionsService.new(current_user, params[:controller], params[:action], params[:business_id]).allow?
 
   end

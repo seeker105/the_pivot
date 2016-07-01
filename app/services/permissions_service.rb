@@ -11,14 +11,12 @@ class PermissionsService
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
     if user
-      # byebug
       if user.platform_admin?
         return true if controller == "items"   && action == "show"
-      # byebug
       elsif business && user == business.owner
         return true if controller == "items"   && action == "index"
 
-      elsif business && business.users.include?(user)
+      elsif business && business.admins.include?(user)
         return true if controller == "sessions" && action == "new"
 
       else

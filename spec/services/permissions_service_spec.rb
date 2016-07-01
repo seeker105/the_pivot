@@ -33,9 +33,9 @@ RSpec.feature do
     item2 = create(:item, name: "Why the road crossed the duck")
     bus_owner = create(:user)
     user = create(:user)
-    # byebug
     business = Business.create(name: "Rubynomics", owner: bus_owner)
-    business.users << user
+    # byebug
+    business.admins << user
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
