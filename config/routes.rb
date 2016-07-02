@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users, only: [:new, :index, :create]
+  resources :businesses, only: [:index, :show]
 
   resources :items do
     resources :bids, only: [:index, :create]
