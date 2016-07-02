@@ -16,9 +16,9 @@ $(document).ready(function(){
   //   });
   // };
   //
-  // showAuctionTable("#open", "#open_auction", "#won_auction", "lost_auction")
-  // showAuctionTable("#won", "#won_auction", "#lost_auction", "open_auction")
-  // showAuctionTable("#lost", "#lost_auction", "#open_auction", "won_auction")
+  // showAuctionTable("#open", "#open_auction", "#won_auction", "#lost_auction")
+  // showAuctionTable("#won", "#won_auction", "#lost_auction", "#open_auction")
+  // showAuctionTable("#lost", "#lost_auction", "#open_auction", "#won_auction")
 
 
   function showOpenAuctions() {
