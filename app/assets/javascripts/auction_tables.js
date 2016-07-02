@@ -3,24 +3,6 @@ $(document).ready(function(){
   $('#lost_auction').hide();
   $('#open_auction').show();
 
-
-  // function hideTables(table1, table2){
-  //   $(table1).hide();
-  //   $(tabel2).hide();
-  // };
-  //
-  // function showAuctionTable(buttonID, showTable, table1, table2) {
-  //   $(buttonID).on("click", function() {
-  //     $(showTable).show();
-  //     hideTables(table1, table2);
-  //   });
-  // };
-  //
-  // showAuctionTable("#open", "#open_auction", "#won_auction", "#lost_auction")
-  // showAuctionTable("#won", "#won_auction", "#lost_auction", "#open_auction")
-  // showAuctionTable("#lost", "#lost_auction", "#open_auction", "#won_auction")
-
-
   function showOpenAuctions() {
     $("#open").on("click", function(){
       $("#open_auction").show();
@@ -48,6 +30,4 @@ $(document).ready(function(){
   showOpenAuctions();
   showLostAuctions();
   showWonAuctions();
-
-
 });
