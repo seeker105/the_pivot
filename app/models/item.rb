@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   has_many :categories_items
   has_many :categories, through: :categories_items
   has_many :bids
+  belongs_to :business
 
   validates :name, presence: true
   validates :description, presence: true

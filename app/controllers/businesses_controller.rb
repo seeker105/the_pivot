@@ -5,6 +5,7 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    #code
+    @business = Business.find_by(id: params[:id])
+    @items = @business.items
   end
 end
