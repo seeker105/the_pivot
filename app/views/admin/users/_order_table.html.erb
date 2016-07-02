@@ -1,8 +1,0 @@
-<table class="table order_table" id= '<%=order_status%>_orders' >
-  <th>Order Number</th>
-<% @orders.objects(status_number).each do |order| %>
-  <tr>
-    <td><%= link_to order.id, order_path(order) %></td>
-  </tr>
-<% end %>
-</table>
