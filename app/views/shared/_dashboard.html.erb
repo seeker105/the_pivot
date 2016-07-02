@@ -6,6 +6,7 @@
 <% end %>
 
 <% if @user.items.any? %>
+  <%= render partial: 'auction_buttons' %>
   <%= render partial: 'open_auction_table' %>
   <%= render partial: 'won_auction_table' %>
   <%= render partial: 'lost_auction_table' %>
