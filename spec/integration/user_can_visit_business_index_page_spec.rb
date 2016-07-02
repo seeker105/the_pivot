@@ -20,15 +20,15 @@ RSpec.feature "user can view business index" do
 
   scenario "user clicks on a link to be taken to a business show page" do
     businesses = create_list(:business, 2)
-    business = businesses[0]
+    business1 = businesses[0]
     items = create_list(:item, 3)
-    business.items << items
+    business1.items << items
 
     visit businesses_path
 
-    click_link(business.name)
-    expect(current_path).to eq(business_path(id: business.id))
-    expect(page).to have_content(business.name)
+    click_link(business1.name)
+    expect(current_path).to eq(business_path(id: business1.id))
+    expect(page).to have_content(business1.name)
     expect(page).to have_content(items[0].name)
     expect(page).to have_content(items[1].name)
     expect(page).to have_content(items[2].name)
