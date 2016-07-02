@@ -5,14 +5,15 @@
     <th>Item</th>
     <th>Current High Bid</th>
     <th>Current High Bidder</th>
-    <!-- <th>Auction End Time</th> -->
+    <th>Auction End Date</th>
   </tr>
   <% @user.open_items.each do |item| %>
   <tr>
     <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= link_to item.name, item_path(item)%> </td>
-    <td><%= item.high_bid%> </td>
+    <td>$<%= item.high_bid%> </td>
     <td><%= item.high_bidder.username%> </td>
+    <td><%= item.end_time%> </td>
   </tr>
   <% end %>
 </table>
@@ -23,14 +24,14 @@
     <th></th>
     <th>Item</th>
     <th>Price Paid</th>
-    <!-- <th>Payment Date</th> -->
+    <th>Payment Date</th>
   </tr>
   <% @user.won_items.each do |item| %>
   <tr>
     <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= link_to item.name, item_path(item)%> </td>
-    <td><%= item.high_bid%> </td>
-    <td><%= item.high_bidder.username%> </td>
+    <td>$<%= item.high_bid%> </td>
+    <td><%= item.end_time%> </td>
   </tr>
   <% end %>
 </table>
@@ -40,15 +41,13 @@
   <tr>
     <th></th>
     <th>Item</th>
-    <th>Price Paid</th>
-    <!-- <th>Payment Date</th> -->
+    <th>Date Auction Closed</th>
   </tr>
   <% @user.lost_items.each do |item| %>
   <tr>
     <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= link_to item.name, item_path(item)%> </td>
-    <td><%= item.high_bid%> </td>
-    <td><%= item.high_bidder.username%> </td>
+    <td><%= item.end_time%> </td>
   </tr>
   <% end %>
 </table>
