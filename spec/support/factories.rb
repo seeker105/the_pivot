@@ -69,5 +69,4 @@ FactoryGirl.define do
   sequence :username do |n|
     "User #{n}"
   end
-
 end
