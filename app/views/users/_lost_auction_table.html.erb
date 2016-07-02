@@ -1,0 +1,15 @@
+<table class="table" id="lost_auction">
+  <caption>Auctions Lost</caption>
+  <tr>
+    <th></th>
+    <th>Item</th>
+    <th>Date Auction Closed</th>
+  </tr>
+  <% @user.lost_items.each do |item| %>
+  <tr>
+    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
+    <td><%= link_to item.name, item_path(item)%> </td>
+    <td><%= item.end_time%> </td>
+  </tr>
+  <% end %>
+</table>
