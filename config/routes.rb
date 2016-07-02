@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users, only: [:new, :index, :create]
-  resources :businesses, only: [:index, :show]
+  # businesses
+  resources :businesses, only: [:index]
 
   resources :items do
     resources :bids, only: [:index, :create]
@@ -22,5 +23,6 @@ Rails.application.routes.draw do
   get "/user/edit", to: "users#edit", as: "edit_user"
   get "/dashboard" => "users#show", as: "dashboard"
   get "/favicon.ico" => "application#get_favicon"
-  get "/:id" => "categories#show", as: "category"
+  get "/categories/:id" => "categories#show", as: "category"
+  get "/:slug", to: 'businesses#show', as: :business
 end
