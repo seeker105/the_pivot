@@ -35,6 +35,5 @@ RSpec.describe Category, type: :model do
     category = Category.create(name: "thing")
     expect(Category.find(category.id).name).to eq "thing"
     expect(Category.find("thing").name).to eq "thing"
-
   end
 end

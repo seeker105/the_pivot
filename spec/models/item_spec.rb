@@ -10,6 +10,7 @@ RSpec.describe Item, type: :model do
   context "relationships" do
     it { should have_many(:categories_items) }
     it { should have_many(:categories) }
+    it { should belong_to(:business)}
   end
 
   scenario "open and closed statuses" do

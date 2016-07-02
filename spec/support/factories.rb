@@ -69,4 +69,15 @@ FactoryGirl.define do
   sequence :username do |n|
     "User #{n}"
   end
+
+  sequence :slug do |n|
+    "business_name_#{n}"
+  end
+
+  factory :business do
+    sequence(:name) { |n| "Business Name #{n}"}
+    active false
+    slug
+  end
+
 end

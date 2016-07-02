@@ -5,6 +5,6 @@ class Business < ActiveRecord::Base
                     source: "user"
   belongs_to :owner, class_name: "User",
                      foreign_key: "owner_id"
-
+  has_many :items
 
 end
