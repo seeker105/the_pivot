@@ -5,11 +5,6 @@
   <%= link_to "Update Personal Account Information", edit_user_path %>
 <% end %>
 
-<% if @user.orders.any? %>
-  <%= link_to "Order History", orders_path %>
-<% end %>
-
-
 <% if @user.items.any? %>
   <%= render partial: 'auction_table' %>
 <% else %>
