@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :index, :create]
   resources :businesses, only: [:index, :edit]
 
+  get '/business-dashboard', to: 'business_admins#show', as: 'business_admin_dashboard'
+
   resources :items do
     resources :bids, only: [:index, :create]
   end
+
   namespace :admin do
     get "/dashboard" => "users#show"
   end
