@@ -1,5 +1,8 @@
 jcasimir = User.create(username: "jcasimir", password: "test", email: "jcasimir@example.com", name: "Jeff Casimir", address: "1510 Blake St", city: "Denver", state: "CO", zip: "80111")
 admin = User.create(username: "admin", password: "admin", role: 1, email: "jcasimir@example.com", name: "Jeff Casimir", address: "1510 Blake St", city: "Denver", state: "CO", zip: "80111")
+mdao = User.create(username: "mdao", password: "test", email: "mdao@example.com", name: "Mike Dao", address: "1510 Denver St", city: "Blake", state: "CO", zip: "80111")
+
+
 
 date = DateTime.now
 storage = Category.create(name: "storage")
@@ -17,3 +20,13 @@ game_systems = Category.create(name: "gaming")
 item_7 = game_systems.items.create(name: "Gameboy", description: "Remember discovering Tetris? Discover it again on this Gameboy.", price: "99.99", image: "https://c4.staticflickr.com/8/7481/16037341171_3db0f52a8d_k.jpg", end_time: date.next_day(2), status: 0)
 item_8 = game_systems.items.create(name: "Atari", description: "Take it back to the 80's and play some Atari on this mint condition system.", price: "800.99", image: "https://c5.staticflickr.com/8/7678/17513196036_a6b2e4889f_k.jpg", end_time: date.next_day(2), status: 0)
 item_9 = game_systems.items.create(name: "Nintendo", description: "Play some games on the original NES.", price: "1999.88", image: "https://visualhunt.com/photos/m/5/nintendo-nes.jpg", end_time: date.next_day(2), status: 0)
+
+
+laser_biz = Business.create(name: "Lazer Biz!", owner: jcasimir, active: true)
+laser_biz.items << [item_1, item_6, item_9]
+
+walk_way =  Business.create(name: "Walk YOUR Way!", owner: mdao, active: true)
+walk_way.items  << [item_3, item_4, item_7]
+
+old_time =  Business.create(name: "Old Timey is GOOD Timey!", owner: mdao)
+old_time.items  << [item_2, item_5, item_8]
