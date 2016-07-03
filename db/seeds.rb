@@ -76,7 +76,7 @@ Business.create!(name: Faker::Company.name,
 18.times do
   Business.create!(name: Faker::Company.name,
                   # description: Faker::Company.catch_phrase,
-                  owner_id: neight)
+                  owner: neight)
 end
 puts "Created Businesses"
 

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  it { should have_many(:businesses_owned) }
   it { should respond_to(:username) }
   it { should respond_to(:password) }
 
@@ -61,7 +62,7 @@ RSpec.describe User, type: :model do
     expect(user.open_items.count).to eq(2)
     expect(user.closed_items.count).to eq(1)
   end
-    
+
   it "can find a multiple auctions won by a specific user" do
     user = create(:user_with_bids)
 
@@ -103,7 +104,7 @@ RSpec.describe User, type: :model do
   it "it can return a single item that has multiple bids from the same user" do
     user = create(:user_with_bid)
     item = user.items.last
-    
+
     new_bid = create(:bid, price: 1000, user: user, item: item)
 
     expect(item.bids.count).to eq(2)
