@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :bids, only: [:index, :create]
   end
-  namespace :business_admin do
+  namespace :admin do
     get "/dashboard" => "users#show"
   end
 

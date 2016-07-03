@@ -78,6 +78,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "Business Name #{n}"}
     active false
     slug
+    description "So great"
   end
 
 end

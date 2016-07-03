@@ -1,4 +1,8 @@
-<h1><%= @business.name %></h1>
+
 <%= link_to "Update Business Information", edit_business_path(@business) %>
+<div class="business_info">
+  <h1><%= @business.name %></h1>
+  <%= @business.description %>
+</div>
 
 <%= render "shared/item_list" %>
