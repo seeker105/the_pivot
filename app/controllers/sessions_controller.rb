@@ -1,15 +1,20 @@
 class SessionsController < ApplicationController
-  after_filter "get_login_redirect", only: [:new]
+  after_action "get_login_redirect", only: [:new]
 
   def new
-
   end
 
   def create
     @user = User.find_by(username: params[:session][:username])
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      
+      if session[:login_redirect].include?("items")
+         redirect_to session[:login_redirect]
+      else 
+         redirect_to dashboard_path
+      end
+
     else
       flash.now[:error] = "Invalid login"
       render :new

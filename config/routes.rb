@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users, only: [:new, :index, :create]
-  # businesses
-  resources :businesses, only: [:index]
+  resources :businesses, only: [:index, :edit]
+
+  get '/business-dashboard', to: 'business_admins#show', as: 'business_admin_dashboard'
 
   resources :items do
     resources :bids, only: [:index, :create]
@@ -25,4 +26,5 @@ Rails.application.routes.draw do
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
   get "/:slug", to: 'businesses#show', as: :business
+  patch "/:slug", to: 'businesses#update', as: "update_business"
 end

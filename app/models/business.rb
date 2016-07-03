@@ -7,7 +7,7 @@ class Business < ActiveRecord::Base
                      foreign_key: "owner_id"
   has_many :items
 
-  before_save :create_slug
+  before_create :create_slug
 
 private
   def create_slug
