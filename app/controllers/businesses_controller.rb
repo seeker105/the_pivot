@@ -6,7 +6,9 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find_by(slug: params[:slug])
-    @items = @business.items
+    unless @business.items.empty?
+      @items = @business.items
+    end
   end
 
   def edit
@@ -14,10 +16,10 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    @business = Business.find(params[:id])
+    @business = Business.find_by(slug: params[:slug])
     if @business.update(business_params)
       flash[:success] = "Successfully updated business information!"
-      redirect_to @business
+      redirect_to business_path(@business.slug)
     else
       flash[:error] = @business.errors.full_message.join(", ")
       render :edit
@@ -26,6 +28,6 @@ class BusinessesController < ApplicationController
 
 private
   def business_params
-    params.require(:business).permit(:name, :description)
+    params.require(:business).permit(:name, :description, :slug)
   end
 end
