@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
 
   def index
-    @businesses = Business.all
+    @businesses = Business.where(active: true)
   end
 
   def show

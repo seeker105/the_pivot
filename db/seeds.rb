@@ -22,10 +22,10 @@ item_8 = game_systems.items.create(name: "Atari", description: "Take it back to 
 item_9 = game_systems.items.create(name: "Nintendo", description: "Play some games on the original NES.", price: "1999.88", image: "https://visualhunt.com/photos/m/5/nintendo-nes.jpg", end_time: date.next_day(2), status: 0)
 
 
-laser_biz = Business.create(name: "Lazer Biz!", owner: jcasimir)
+laser_biz = Business.create(name: "Lazer Biz!", owner: jcasimir, active: true)
 laser_biz.items << [item_1, item_6, item_9]
 
-walk_way =  Business.create(name: "Walk YOUR Way!", owner: mdao)
+walk_way =  Business.create(name: "Walk YOUR Way!", owner: mdao, active: true)
 walk_way.items  << [item_3, item_4, item_7]
 
 old_time =  Business.create(name: "Old Timey is GOOD Timey!", owner: mdao)
