@@ -173,14 +173,13 @@ end
 
 # 7 more categories
 
-  Category.create!(name: "Housewares")
-  Category.create!(name: "Softlines")
-  Category.create!(name: "Kitchen")
+  Category.create!(name: "Movies")
+  Category.create!(name: "Books")
+  Category.create!(name: "Antiques")
   Category.create!(name: "Digital")
   Category.create!(name: "Analog")
-  Category.create!(name: "Crafts")
-  Category.create!(name: "Seasonal")
-  Category.create!(name: "Holiday")
+  Category.create!(name: "Classic Cars")
+  Category.create!(name: "Music & Audio")
 
 
 (4..Category.count).step do |x|
@@ -209,4 +208,4 @@ end
                                   business_id: rand(1..19))
   end
 end
-puts "Created Categories"
+puts "Created Categories & Items..."
