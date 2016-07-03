@@ -68,15 +68,15 @@ puts "Created Users"
 puts "Creating Businesses..."
 Business.create!(name: Faker::Company.name,
                 # description: Faker::Company.catch_phrase,
-                owner_id: 2)
+                owner: neight)
 Business.create!(name: Faker::Company.name,
                 # description: Faker::Company.catch_phrase,
-                owner_id: 2)
+                owner: neight)
 
 18.times do
   Business.create!(name: Faker::Company.name,
                   # description: Faker::Company.catch_phrase,
-                  owner_id: rand(3..User.count))
+                  owner_id: neight)
 end
 puts "Created Businesses"
 
@@ -172,9 +172,16 @@ end
 end
 
 # 7 more categories
-7.times do
-  Category.create!(name: Faker::Commerce.department(1, true))
-end
+
+  Category.create!(name: "Housewares")
+  Category.create!(name: "Softlines")
+  Category.create!(name: "Kitchen")
+  Category.create!(name: "Digital")
+  Category.create!(name: "Analog")
+  Category.create!(name: "Crafts")
+  Category.create!(name: "Seasonal")
+  Category.create!(name: "Holiday")
+
 
 (4..Category.count).step do |x|
   10.times do
