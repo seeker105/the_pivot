@@ -1,7 +1,14 @@
-<%= form_for ([item, @bid]) do |f| %>
-  <%= f.number_field :price, min: (item.high_bid+1.00) %>
-  <%= f.submit "Place Bid"  %>
-<% end  %>
+<div id="bid_form">
+    <% if current_user %>
+      <%= form_for ([item, @bid]) do |f| %>
+        <%= f.number_field :price, min: (item.high_bid+1.00), class: "form-control" %>
+        <%= f.submit "Place Bid" %>
+      <% end  %>
+
+    <% else %>
+      <%= link_to "Login or Create Account to Bid", login_path %>
+    <%end%>
+</div>
 <br />
 <br />
 <br />
