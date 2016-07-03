@@ -75,6 +75,7 @@ FactoryGirl.define do
   factory :business do
     sequence(:name) { |n| "Business Name #{n}"}
     active false
+    description "So great"
   end
 
 end

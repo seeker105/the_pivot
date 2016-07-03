@@ -3,13 +3,11 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :users, only: [:new, :index, :create]
-  # businesses
-  resources :businesses, only: [:index]
+  resources :businesses, only: [:index, :show, :edit, :update]
 
   resources :items do
     resources :bids, only: [:index, :create]
   end
-
   namespace :admin do
     get "/dashboard" => "users#show"
   end
