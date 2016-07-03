@@ -64,15 +64,18 @@ puts "Created Users"
 
 puts "Creating Businesses..."
 Business.create!(name: Faker::Company.name,
-                # description: Faker::Company.catch_phrase,
+                description: Faker::Company.catch_phrase,
+                active: true,
                 owner: neight)
 Business.create!(name: Faker::Company.name,
-                # description: Faker::Company.catch_phrase,
+                description: Faker::Company.catch_phrase,
+                active: true,
                 owner: neight)
 
 18.times do
   Business.create!(name: Faker::Company.name,
-                  # description: Faker::Company.catch_phrase,
+                  description: Faker::Company.catch_phrase,
+                  active: true,
                   owner: neight)
 end
 puts "Created Businesses"
