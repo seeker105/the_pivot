@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   get "/user/edit", to: "users#edit", as: "edit_user"
   get "/dashboard" => "users#show", as: "dashboard"
   get "/favicon.ico" => "application#get_favicon"
-  get "/:id" => "categories#show", as: "category"
+  get "/categories/:id" => "categories#show", as: "category"
+  get "/:slug", to: 'businesses#show', as: :business
 end
