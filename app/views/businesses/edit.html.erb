@@ -1,5 +1,5 @@
-<%= form_for @business do |f| %>
+<%= form_for(@business, url: update_business_path(@business.slug)) do |f| %>
   <%= f.text_field :name, placeholder: :name %>
   <%= f.text_field :description, placeholder: :description %>
-  <%= f.submit "Update" %>
+  <%= f.submit "Update", method: :patch  %>
 <% end  %>
