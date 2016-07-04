@@ -1,0 +1,56 @@
+require 'rails_helper'
+
+RSpec.feature "business dashboard permission" do
+  scenario "A business admin can see their business' dashboard" do
+
+    admin = create(:user)
+    my_business = admin.businesses << create(:business)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(admin)
+
+    visit business_dashboard_path(my_business.slug)
+
+    expect(current_page).to eq("/#{business.slug}/dashboard"
+
+    within(".business_header") do
+      expect(page).to have_content("#{business.name} Dashboard") 
+    end
+
+
+  end
+
+  scenario "A business admin cannot see another business's dashboard" do
+    pending
+
+    admin = create(:user)
+    my_business = admin.businesses << create(:business)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(admin)
+
+    other_business = create(:business)
+
+    #expect{visit business_dashboard_path(other_business.slug }.to 
+    #  raise_error( ActionController::RoutingError)
+
+    visit business_admin_dashboard_path(other_pusiness.slug)
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+  scenario "A regular user cannot see a business's dashboard" do
+    pending
+
+    user = create(:user)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(user)
+
+    #expect{visit business_dashboard_path(other_business.slug }.to 
+    #  raise_error( ActionController::RoutingError)
+
+    visit business_admin_dashboard_path(other_pusiness.slug)
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
+end
+
