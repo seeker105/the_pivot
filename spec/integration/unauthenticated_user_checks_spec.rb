@@ -11,7 +11,7 @@ RSpec.feature "Unauthenticated User has correct privledges" do
   end
 
   scenario "cannot view admin dashboard" do
-    visit admin_dashboard_path
+    visit business_admin_dashboard_path
 
     expect(current_path).to eq(login_path)
   end

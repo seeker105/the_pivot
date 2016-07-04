@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.feature "admin login functions" do
   scenario "admin logs in" do
-    admin = create(:user, role: 1)
+    admin = create(:user)
+    admin.businesses << create(:business)
 
     visit login_path
 
@@ -11,8 +12,12 @@ RSpec.feature "admin login functions" do
 
     click_button "Log In"
 
-    expect(current_path).to eq("/admin/dashboard")
-    expect(page).to have_content("Welcome, #{admin.name}")
+    expect(current_path).to eq("/business_admin/dashboard")
+
+    within(".admin_header") do
+      expect(page).to have_content("Business Admin Dashboard")
+      expect(page).to have_content("Welcome, #{admin.name}")
+    end
   end
 
   scenario "default user cannot view admin dashboard" do
@@ -21,7 +26,7 @@ RSpec.feature "admin login functions" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(user)
 
-    visit admin_dashboard_path
+    visit business_admin_dashboard_path
 
     expect(page).not_to have_content("Admin Dashboard")
 
@@ -32,7 +37,7 @@ RSpec.feature "admin login functions" do
   end
 
   scenario "guest cannot view admin dashboard" do
-    visit admin_dashboard_path
+    visit business_admin_dashboard_path
 
     expect(current_path).to eq login_path
   end

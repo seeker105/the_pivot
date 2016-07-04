@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
   validates_confirmation_of :email, message: "does not match"
 
 
-  enum role:["default", "admin"]
-
   def to_param
   end
 
@@ -31,6 +29,10 @@ class User < ActiveRecord::Base
 
   def platform_admin?
     self.platform_admin
+  end
+
+  def admin?
+    self.businesses.exists?
   end
 
   def won_items

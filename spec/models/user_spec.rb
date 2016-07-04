@@ -111,4 +111,17 @@ RSpec.describe User, type: :model do
 
     expect(user.open_items.count).to eq(1)
   end
+
+  it "can tell if it is a business_admin" do
+    user = create(:user)
+    user.businesses << create(:business, active: true)
+
+    expect(user.admin?).to eq(true)
+  end
+
+  it "can tell if it is not a business_admin" do
+    user = create(:user)
+
+    expect(user.admin?).to eq(false)
+  end
 end
