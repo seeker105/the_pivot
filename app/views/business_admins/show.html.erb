@@ -1,8 +1,0 @@
-<h1>Business Admin Dashboard</h1>
-
-<div class="business_list"
-<h2>Your Businesses</h2>
-<% @user.businesses.each do |business| %>
-  <%= link_to business.name, business_path(business.slug) %>
-<% end %>
-</div>

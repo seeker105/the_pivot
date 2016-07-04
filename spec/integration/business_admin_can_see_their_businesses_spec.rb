@@ -11,7 +11,7 @@ RSpec.feature "business admin can see their businesses" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    visit business_admin_dashboard_path
+    visit admin_dashboard_path
 
     within("h1") do
       expect(page).to have_content("Business Admin Dashboard")
