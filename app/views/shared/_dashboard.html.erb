@@ -1,9 +1,5 @@
 <h2> Welcome, <%= @user.name %></h2>
-<% if @user.admin? %>
-  <%= link_to "Update Personal Account Information", admin_edit_user_path %>
-<% else %>
-  <%= link_to "Update Personal Account Information", edit_user_path %>
-<% end %>
+<%= link_to "Update Personal Account Information", user_edit_path(id: @user.id) %>
 
 <% if @user.items.any? %>
   <%= render partial: 'auction_buttons' %>

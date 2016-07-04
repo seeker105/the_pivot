@@ -1,5 +1,5 @@
 <div id="login">
-  <%= form_for(@user, url: edit_user_path) do |f| %>
+  <%= form_for(@user, url: user_edit_path) do |f| %>
     <div class="form-group">
       <%= f.label :username %>
       <%= f.text_field :username, class: "form-control" %>
