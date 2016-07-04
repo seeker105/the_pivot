@@ -5,7 +5,7 @@
 
 <div class="business_list"
 <h2>Your Businesses</h2>
-<% @user.businesses.each do |business| %>
-  <%= link_to business.name, business_path(business.slug) %>
+<% @businesses.each do |business| %>
+  <%= link_to business.name, business_dashboard_path(slug: business.slug) %>
 <% end %>
 </div>

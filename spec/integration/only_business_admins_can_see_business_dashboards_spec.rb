@@ -13,8 +13,9 @@ RSpec.feature "only business admins can see business dashboards" do
     # I visit the business dashboard path for my business
     # I see the business header on the page
     visit business_dashboard_path(slug: business.slug)
-
-    expect(page).to have_content("#{business.name} Dashboard")
+    within('body') do
+      expect(page).to have_content("#{business.name} Dashboard")
+    end
   end
 
   scenario "logged in non-admin user visits business dashboard path" do
