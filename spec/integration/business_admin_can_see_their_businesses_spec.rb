@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "business admin can see their businesses" do
   scenario "on their admin dashboard" do
-    admin = create(:user)
+    admin = create(:user, role: 1)
+    #this needs to change
+    #get rid of role column on user
+    #and
     businesses = create_list(:business, 3)
     business_admin1 = BusinessAdmin.create(user: admin, business: businesses[0])
     business_admin2 = BusinessAdmin.create(user: admin, business: businesses[1])
@@ -11,9 +14,9 @@ RSpec.feature "business admin can see their businesses" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    visit admin_dashboard_path
-
-    within("h1") do
+    visit business_admin_dashboard_path
+    expect(current_path).to eq(business_admin_dashboard_path)
+    within(".admin_header") do
       expect(page).to have_content("Business Admin Dashboard")
     end
 
