@@ -9,7 +9,6 @@ FactoryGirl.define do
     city  "Faketown"
     state "FT"
     zip "1234"
-    role "default"
 
     factory :user_with_bid do
        after(:create) do |user|

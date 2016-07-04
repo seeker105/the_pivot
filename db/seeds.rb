@@ -5,7 +5,6 @@
 puts "Creating Users..."
 admin = User.create!(username: "admin",
                      password: "admin",
-                     role: 1,
                      email: "jcasimir@example.com",
                      name: "Jeff Casimir",
                      address: "1510 Blake St",
