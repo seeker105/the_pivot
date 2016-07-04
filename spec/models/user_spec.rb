@@ -61,7 +61,7 @@ RSpec.describe User, type: :model do
     expect(user.open_items.count).to eq(2)
     expect(user.closed_items.count).to eq(1)
   end
-    
+
   it "can find a multiple auctions won by a specific user" do
     user = create(:user_with_bids)
 
@@ -103,11 +103,24 @@ RSpec.describe User, type: :model do
   it "it can return a single item that has multiple bids from the same user" do
     user = create(:user_with_bid)
     item = user.items.last
-    
+
     new_bid = create(:bid, price: 1000, user: user, item: item)
 
     expect(item.bids.count).to eq(2)
 
     expect(user.open_items.count).to eq(1)
+  end
+
+  it "can tell if it is a business_admin" do
+    user = create(:user)
+    user.businesses << create(:business, active: true)
+
+    expect(user.admin?).to eq(true)
+  end
+
+  it "can tell if it is not a business_admin" do
+    user = create(:user)
+
+    expect(user.admin?).to eq(false)
   end
 end
