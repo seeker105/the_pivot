@@ -24,4 +24,9 @@ RSpec.feature "User can update account" do
     expect(page).to have_content(new_user_name)
     expect(page).not_to have_content(user.username)
   end
+
+  # TODO: Any admin type (platform/owner/business admin
+  # must go to this dashboard to edit their personal information
+
+  # TODO: Add sad path test (user cannot edit another user, platform admins can?)
 end
