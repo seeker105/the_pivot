@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "business dashboard shows item info" do
   scenario "for a business with no items" do
+    admin = create(:user)
     business = create(:business)
+    admin.businesses << business
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit business_dashboard_path(business.slug)
 
@@ -12,9 +15,13 @@ RSpec.feature "business dashboard shows item info" do
   end
 
   scenario "for a business with open auctions" do
+    admin = create(:user)
     business = create(:business)
+    admin.businesses << business
     items = business.items << create_list(:item, 2)
     extra_item = create(:item)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
 
     visit business_dashboard_path(business.slug)
 
@@ -45,6 +52,8 @@ RSpec.feature "business dashboard shows item info" do
     other_business = create(:business)
     other_business.items << create(:item, status: "closed")
     other_item = other_business.items.first
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit business_dashboard_path(business.slug)
 
