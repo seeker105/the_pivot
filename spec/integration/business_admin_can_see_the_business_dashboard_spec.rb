@@ -4,23 +4,22 @@ RSpec.feature "business dashboard permission" do
   scenario "A business admin can see their business' dashboard" do
 
     admin = create(:user)
-    my_business = admin.businesses << create(:business)
+    admin.businesses << create(:business)
+    my_business = admin.businesses.first
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(admin)
 
     visit business_dashboard_path(my_business.slug)
 
-    expect(current_page).to eq("/#{business.slug}/dashboard"
+    expect(current_path).to eq("/#{my_business.slug}/dashboard")
 
     within(".business_header") do
-      expect(page).to have_content("#{business.name} Dashboard") 
+      expect(page).to have_content("#{my_business.name} Dashboard") 
     end
-
 
   end
 
   scenario "A business admin cannot see another business's dashboard" do
-    pending
 
     admin = create(:user)
     my_business = admin.businesses << create(:business)
@@ -33,7 +32,7 @@ RSpec.feature "business dashboard permission" do
     #expect{visit business_dashboard_path(other_business.slug }.to 
     #  raise_error( ActionController::RoutingError)
 
-    visit business_admin_dashboard_path(other_pusiness.slug)
+    visit business_dashboard_path(other_business.slug)
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 

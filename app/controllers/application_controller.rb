@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_constants
-  # before_action :authorize!
+  before_action :authorize!
   helper_method :current_user, :current_admin?
 
   def set_constants
@@ -24,11 +24,11 @@ class ApplicationController < ActionController::Base
 
 private
   def authorize!
-    redirect_to(root_url, danger: "You are not authorized") unless authorized?
+    #redirect_to(root_url, danger: "You are not authorized") unless authorized?
+    render file: "public/404" unless authorized?
   end
 
   def authorized?
-    PermissionsService.new(current_user, params[:controller], params[:action], params[:business_id]).allow?
-
+    PermissionsService.new(current_user, params[:controller], params[:action], params[:slug]).allow?
   end
 end
