@@ -48,6 +48,7 @@ FactoryGirl.define do
     image "http://i.imgur.com/kgOqHMk.gif"
     status "open"
     end_time Time.now
+    business
 
     factory :item_with_bids do
       transient do
