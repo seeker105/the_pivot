@@ -5,6 +5,7 @@
 <div class="business_items">
   <% if @business.items.exists? %>
     <%= render partial: 'open_auctions_table' %>
+    <%= render partial: 'closed_auctions_table' %>
   <% else  %>
     <p>There are no items for this business yet.</p>
   <% end  %>

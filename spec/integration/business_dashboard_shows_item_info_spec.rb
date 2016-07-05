@@ -17,7 +17,6 @@ RSpec.feature "business dashboard shows item info" do
     extra_item = create(:item)
 
     visit business_dashboard_path(business.slug)
-    save_and_open_page
 
     within('#open_auction') do
       expect(page).to have_content(items[0].name)
@@ -35,6 +34,37 @@ RSpec.feature "business dashboard shows item info" do
   end
 
   scenario "for a business with open and closed auctions" do
+    admin = create(:user)
+    admin.businesses << create(:business)
+    business = admin.businesses.first
+    business.items << create(:item)
+    business.items << create(:item, status: "closed")
+    open_item = business.items.first
+    closed_item = business.items.last
 
-  end 
+    other_business = create(:business)
+    other_business.items << create(:item, status: "closed")
+    other_item = other_business.items.first
+
+    visit business_dashboard_path(business.slug)
+
+    within("#open_auction") do
+      expect(page).to have_content(open_item.name)
+      expect(page).to have_content(open_item.high_bid)
+      expect(page).to have_content(open_item.high_bidder)
+      expect(page).to have_content(open_item.end_time)
+
+      expect(page).not_to have_content(closed_item.name)
+    end
+
+    within("#closed_auction") do
+      expect(page).to have_content(closed_item.name)
+      expect(page).to have_content(closed_item.high_bid)
+      expect(page).to have_content(closed_item.high_bidder)
+      expect(page).to have_content(closed_item.end_time)
+
+      expect(page).not_to have_content(open_item.name)
+      expect(page).not_to have_content(other_item.name)
+    end
+  end
 end

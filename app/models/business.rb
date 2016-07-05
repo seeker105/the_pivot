@@ -9,6 +9,14 @@ class Business < ActiveRecord::Base
 
   before_create :create_slug
 
+  def open_items
+    self.items.where(status: 0)
+  end
+
+  def closed_items
+    self.items.where(status: 1)
+  end
+
 private
   def create_slug
     self.slug = self.name.parameterize
