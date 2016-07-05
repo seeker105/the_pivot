@@ -6,10 +6,13 @@ RSpec.feature "business admin can see their businesses" do
     businesses = admin.businesses << create_list(:business, 3)
     other_business = create(:business)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(admin)
 
     visit business_admin_dashboard_path
+
     expect(current_path).to eq(business_admin_dashboard_path)
+    
     within(".admin_header") do
       expect(page).to have_content("Business Admin Dashboard")
     end

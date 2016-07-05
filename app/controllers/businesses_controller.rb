@@ -12,7 +12,7 @@ class BusinessesController < ApplicationController
   end
 
   def edit
-    @business = Business.find(params[:id])
+    @business = Business.find_by(slug: params[:slug])
   end
 
   def update

@@ -2,12 +2,19 @@ require 'rails_helper'
 
 RSpec.feature "business info can be updated" do
   scenario "fill in form with updated business info" do
-    business = create(:business)
+    admin = create(:user)
+    admin.businesses << create(:business)
+    business = admin.businesses.first
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(admin)
+
     updated_business_name = "New Name"
     updated_business_description = "New Description"
 
     visit business_path(business.slug)
+
     click_link "Update Business Information"
+
     fill_in "business[name]", with: updated_business_name
     fill_in "business[description]", with: updated_business_description
     click_button "Update"

@@ -1,4 +1,4 @@
-<%= link_to "Update Business Information", edit_business_path(@business) %>
+<%= link_to "Update Business Information", edit_business_path(@business.slug) %>
 <div class="business_info">
   <h1><%= @business.name %></h1>
   <%= @business.description %>
