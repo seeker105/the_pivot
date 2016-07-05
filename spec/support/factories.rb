@@ -9,7 +9,6 @@ FactoryGirl.define do
     city  "Faketown"
     state "FT"
     zip "1234"
-    role "default"
 
     factory :user_with_bid do
        after(:create) do |user|
@@ -18,15 +17,14 @@ FactoryGirl.define do
     end
 
     factory :user_with_bids do
-       3.times do
-         after(:create) do |user|
-           create(:bid, user: user)
-         end
-       end
+      transient do
+        bid_count 3
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:bid, evaluator.bid_count, user: user)
+      end
     end
-
-
-
   end
 
   sequence :name do |n|
@@ -48,16 +46,17 @@ FactoryGirl.define do
     description "test description"
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
-    status 0
-    end_time Time.now 
+    status "open"
+    end_time Time.now
 
     factory :item_with_bids do
-      bids { create_list(:bid, 3) }
-    end
+      transient do
+        bid_count 3
+      end
 
-    factory :ended_item_with_bid do
-      # bids { generate(:bid) }
-      bids { create_list(:bid, 3) }
+      after(:create) do |item, evaluator|
+        create_list(:bid, evaluator.bid_count, item: item)
+      end
     end
   end
 
@@ -66,17 +65,16 @@ FactoryGirl.define do
     name
   end
 
-  factory :order do
-    user
-    status 0
-
-    factory "order_with_items" do
-      items { create_list(:item, 3) }
-    end
-  end
-
   sequence :username do |n|
     "User #{n}"
+  end
+
+
+
+  factory :business do
+    sequence(:name) { |n| "Business Name #{n}"}
+    active false
+    description "So lit"
   end
 
 end

@@ -1,29 +1,48 @@
 Rails.application.routes.draw do
   root :to => "items#index"
 
-  resources :items, only: [:index, :show]
-  resources :users, only: [:new, :index, :create]
-  resources :cart_items, only: [:create, :index, :destroy, :update]
-
-  resources :items do
-    resources :bids, only: [:index, :create]
-  end
-
-  resources :orders, only: [:index, :create, :show, :edit, :update]
-
-  namespace :admin do
-    get "/dashboard" => "users#show"
-  end
-
+  # Sessions:
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+
+  # Basic resources
+  #resources :items, only: [:index, :show]
+  resources :users, only: [:new, :index, :create]
+  get "/user/edit", to: "users#edit"
   patch "/user/edit", to: "users#update"
-  get "admin/user/edit" => "users#edit", as: "admin_edit_user"
-  get "/user/edit", to: "users#edit", as: "edit_user"
-  get "/cart" => "cart_items#index", as: "cart"
+
+
+  resources :businesses, only: [:index]
+
+  # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
+
+  resources :items, only: [:index, :show] do
+    resources :bids, only: [:index, :create]
+  end
+
+  # User Dashboard
   get "/dashboard" => "users#show", as: "dashboard"
+
+  # Admin Functionality:
+  namespace :platform_admin do
+    get "/dashboard", to: "users#show"
+  end
+
+  namespace :business_admin do
+    get "/dashboard" => "users#show"
+  end
+
+
   get "/favicon.ico" => "application#get_favicon"
-  get "/:id" => "categories#show", as: "category"
+  get "/categories/:id" => "categories#show", as: "category"
+
+  namespace :business, path: "/:slug", as: :business do
+    get "/dashboard", to: "dashboard#show"
+  end
+
+  get "/:slug/edit", to: "businesses#edit", as: "edit_business"
+  get "/:slug", to: 'businesses#show', as: :business
+  patch "/:slug", to: 'businesses#update', as: "update_business"
 end

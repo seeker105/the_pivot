@@ -1,0 +1,7 @@
+<% if @businesses.count > 0 %>
+<ul>
+    <% @businesses.each do |business| %>
+  <li> <h3><%= link_to business.name, business_path(business.slug)%></h3> </li>
+  <% end %>
+</ul>
+<% end %>

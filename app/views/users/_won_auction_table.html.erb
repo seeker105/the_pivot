@@ -1,0 +1,17 @@
+<table class="table" id="won_auction">
+  <caption>Auctions Won</caption>
+  <tr>
+    <th></th>
+    <th>Item</th>
+    <th>Price Paid</th>
+    <th>Payment Date</th>
+  </tr>
+  <% @user.won_items.each do |item| %>
+  <tr>
+    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
+    <td><%= link_to item.name, item_path(item)%> </td>
+    <td>$<%= item.high_bid%> </td>
+    <td><%= item.end_time%> </td>
+  </tr>
+  <% end %>
+</table>

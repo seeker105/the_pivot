@@ -1,17 +1,11 @@
 <h2> Welcome, <%= @user.name %></h2>
-<% if @user.admin? %>
-  <%= link_to "Update Personal Account Information", admin_edit_user_path %>
-<% else %>
-  <%= link_to "Update Personal Account Information", edit_user_path %>
-<% end %>
-
-<% if @user.orders.any? %>
-  <%= link_to "Order History", orders_path %>
-<% end %>
-
+<%= link_to "Update Personal Account Information", user_edit_path(id: @user.id) %>
 
 <% if @user.items.any? %>
-  <%= render partial: 'auction_table' %>
+  <%= render partial: 'auction_buttons' %>
+  <%= render partial: 'open_auction_table' %>
+  <%= render partial: 'won_auction_table' %>
+  <%= render partial: 'lost_auction_table' %>
 <% else %>
   <p> No auction information yet! </p>
 <% end %>

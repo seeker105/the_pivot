@@ -6,29 +6,17 @@ RSpec.feature "Unauthenticated User has correct privledges" do
 
     visit dashboard_path
 
-    expect(current_path).to eq(login_path)
-    expect{visit ("/users/#{user.id}") }.to raise_error( ActionController::RoutingError)
+    within("title") do
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
   end
 
   scenario "cannot view admin dashboard" do
-    visit admin_dashboard_path
+    visit business_admin_dashboard_path
 
-    expect(current_path).to eq(login_path)
-  end
-
-  scenario "cannot manually create admin user role", type: :request do
-    post "/users", user: { username: "test", password: "test",
-                           password_confirmation: "test",
-                           email: "test@test.com",
-                           email_confirmation: "test@test.com",
-                           name: "John Doe",
-                           address: "1234 Fake Street", city: "Faketown",
-                           state: "FT", zip: "12345", role: 1 }
-
-    expect(response).to redirect_to(dashboard_path)
-    follow_redirect!
-
-    expect(response).to render_template(:show)
-    expect(response.body).to include("Welcome, John Doe")
+    expect(current_path).to eq(business_admin_dashboard_path)
+    within("title") do
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
   end
 end
