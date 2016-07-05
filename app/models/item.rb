@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
   end
 
   def high_bidder
-    Bid.count > 0 ? Bid.find_by(price: high_bid).user : nil
+    self.bids.exists? ? self.bids.find_by(price: high_bid).user : nil
   end
 
   def self.update_status

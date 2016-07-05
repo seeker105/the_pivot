@@ -79,6 +79,16 @@ RSpec.describe Item, type: :model do
     expect(item.high_bidder).to eq user3
   end
 
+  it "finds the highest bid for the specific item" do
+    user1 = create(:user_with_bids, bid_count: 1)
+    item = user1.items.first
+    user2 = create(:user)
+    item2 = create(:item)
+    bid2 = Bid.create(price: 100, user: user2, item: item2)
+
+    expect(item.high_bidder).to eq(user1)
+  end
+
   it "returns nil for high_bidder when no bids placed" do
     item = create(:item)
     user = create(:user)
