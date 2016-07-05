@@ -46,7 +46,7 @@ RSpec.feature "user can place a bid on an item" do
       click_button("Place Bid")
 
       expect(page).not_to have_content("No current bids")
-      expect(page).to have_content("Highest Bidder: #{user.name}")
+      expect(page).to have_content("Highest Bidder: #{user.username}")
       expect(page).to have_content("Highest Bid: #{user.bids.last.price}")
     end
 

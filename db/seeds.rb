@@ -62,20 +62,13 @@ end
 puts "Created Users"
 
 puts "Creating Businesses..."
-Business.create!(name: Faker::Company.name,
-                description: Faker::Company.catch_phrase,
-                active: true,
-                owner: neight)
-Business.create!(name: Faker::Company.name,
-                description: Faker::Company.catch_phrase,
-                active: true,
-                owner: neight)
 
-18.times do
-  Business.create!(name: Faker::Company.name,
+20.times do |x|
+  business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
                   active: true,
                   owner: neight)
+  business.admins << User.find(x+2)
 end
 puts "Created Businesses"
 
@@ -206,4 +199,4 @@ Category.create!(name: "Music & Audio")
                                   business_id: rand(1..19))
   end
 end
-puts "Created Items & Categories..."
+puts "Created Categories & Items"

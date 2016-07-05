@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   patch "/user/edit", to: "users#update"
 
 
-  resources :businesses, only: [:index, :edit]
+  resources :businesses, only: [:index]
 
   # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
 
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#show"
   end
 
+  get "/:slug/edit", to: "businesses#edit", as: "edit_business"
   get "/:slug", to: 'businesses#show', as: :business
   patch "/:slug", to: 'businesses#update', as: "update_business"
 end

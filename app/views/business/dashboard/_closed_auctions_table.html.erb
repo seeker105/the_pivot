@@ -1,0 +1,21 @@
+<table class="table" id="closed_auction">
+  <caption>Open Auctions</caption>
+  <tr>
+    <th></th>
+    <th>Item</th>
+    <th>Item ID</th>
+    <th>Selling Price</th>
+    <th>Buyer</th>
+    <th>Date Bought</th>
+  </tr>
+  <% @business.closed_items.each do |item| %>
+  <tr>
+    <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
+    <td><%= link_to item.name, item_path(item)%> </td>
+    <td><%= item.id %> </td>
+    <td>$<%= item.high_bid%> </td>
+    <td><%= format_bidder(item.high_bidder)%> </td>
+    <td><%= item.end_time%> </td>
+  </tr>
+  <% end %>
+</table>
