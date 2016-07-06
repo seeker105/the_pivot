@@ -9,7 +9,7 @@ z<h1>Platform Admin Dashboard</h1>
        <% if business.active %>
          <%= link_to "Deactivate", platform_admin_deactivate_path(slug: business.slug) %>
        <% else %>
-         <%= link_to "Activate", platform_admin_activate_path(slug: business.slug), class: "btn btn-default btn-success"%>
+         <%= link_to "Activate", platform_admin_activate_path(slug: business.slug)%>
        <% end %>
   </li>
   <% end %>
