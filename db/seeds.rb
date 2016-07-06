@@ -66,7 +66,7 @@ puts "Creating Businesses..."
 20.times do |x|
   business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
-                  active: (x<15),
+                  active: (x < 15),
                   owner: neight)
   business.admins << User.find(x+3)
 end
@@ -78,7 +78,7 @@ date = DateTime.now
 storage = Category.create!(name: "Storage")
 item_1 = storage.items.create!(name: "Laser Disc", description: "Make great plates.", price: "5.99", image: "https://visualhunt.com/photos/m/5/laser-and-video-discs-24.jpg", end_time: date.prev_day, status: 0, business_id: rand(1..19))
 item_2 = storage.items.create!(name: "Floppy Disc", description: "Need to store a whopping 1.44 MB of data? This bad boy has got you covered.", price: "5.99", image: "https://visualhunt.com/photos/m/5/day-037-did-floppy-exist-once.jpg", end_time: date.prev_day, status: 0, business_id: rand(1..19))
-item_3 = storage.items.create!(name: "CD", description: "Like ninja stars but better.", price: "2.99", image: "https://visualhunt.com/photos/m/4/cd-dvd-computer-data-shiny-digital-disk.jpg", end_time: date.prev_day, status: 0, business_id: rand(1..19))
+item_3 = storage.items.create!(name: "CD", description: "Like ninja stars but better.", price: "2.99", image: "https://visualhunt.com/photos/m/4/cd-dvd-computer-data-shiny-digital-disk.jpg", end_time: date.at_beginning_of_hour, status: 0, business_id: rand(1..19))
 7.times do
   storage.items.create!(name: Faker::Hacker.noun.capitalize,
                        description: Faker::Lorem.sentence,
