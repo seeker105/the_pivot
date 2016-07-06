@@ -1,0 +1,17 @@
+z<h1>Platform Admin Dashboard</h1>
+
+<% if @businesses.count > 0 %>
+<ul>
+    <% @businesses.each do |business| %>
+  <li> <h3><%= link_to business.name, edit_business_path(business.slug)%></h3> <br />
+
+       Status: <%= business.status %>
+       <% if business.active %>
+         <%= link_to "Deactivate", platform_admin_deactivate_path(slug: business.slug) %>
+       <% else %>
+         <%= link_to "Activate", platform_admin_activate_path(slug: business.slug), class: "btn btn-default btn-success"%>
+       <% end %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
