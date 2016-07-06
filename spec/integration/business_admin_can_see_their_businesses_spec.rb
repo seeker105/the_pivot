@@ -19,5 +19,10 @@ RSpec.feature "business admin can see their businesses" do
     visit business_admin_dashboard_path
 
     click_link(businesses[0].name)
+    expect(current_path).to eq(business_admin_dashboard_path)
+
+    within(".admin_header") do
+      expect(page).to have_content("Business Admin Dashboard")
+    end
   end
 end
