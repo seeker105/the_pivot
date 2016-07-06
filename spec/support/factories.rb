@@ -61,7 +61,6 @@ FactoryGirl.define do
     end
   end
 
-
   factory :category do
     name
   end

@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @bid = Bid.new 
+    @bid = Bid.new
+  end
+
+  def edit
+    byebug
+    @item = Item.find(params[:id])
   end
 end
