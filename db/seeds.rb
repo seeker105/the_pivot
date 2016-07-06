@@ -66,7 +66,7 @@ puts "Creating Businesses..."
 20.times do |x|
   business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
-                  active: true,
+                  active: (x < 15),
                   owner: neight)
   business.admins << User.find(x+2)
 end
