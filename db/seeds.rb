@@ -8,6 +8,15 @@ admin = User.create!(username: "admin",
                      city: "Denver",
                      state: "CO",
                      zip: "80111")
+jorge = User.create!(username: "jorge@turing.io",
+                     password: "password",
+                     email: "jorge@turing.io",
+                     name: "Jorge Tellez",
+                     address: Faker::Address.street_address,
+                     city: Faker::Address.city,
+                     state: Faker::Address.state_abbr,
+                     zip: Faker::Address.zip,
+                     platform_admin: true)
 jcasimir = User.create!(username: "jcasimir",
                         password: "test",
                         email: "jcasimir@example.com",
@@ -32,15 +41,6 @@ neight = User.create!(username: "nate@turing.io",
                       city: Faker::Address.city,
                       state: Faker::Address.state_abbr,
                       zip: Faker::Address.zip)
-jorge = User.create!(username: "jorge@turing.io",
-                     password: "password",
-                     email: "jorge@turing.io",
-                     name: "Jorge Tellez",
-                     address: Faker::Address.street_address,
-                     city: Faker::Address.city,
-                     state: Faker::Address.state_abbr,
-                     zip: Faker::Address.zip,
-                     platform_admin: true)
 jmejia = User.create!(username: "jmejia@turing.io",
                       password: "password",
                       email: "jmejia@turing.io",
@@ -66,9 +66,9 @@ puts "Creating Businesses..."
 20.times do |x|
   business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
-                  active: true,
+                  active: (x<15),
                   owner: neight)
-  business.admins << User.find(x+2)
+  business.admins << User.find(x+3)
 end
 puts "Created Businesses"
 
