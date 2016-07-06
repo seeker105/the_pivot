@@ -14,7 +14,7 @@ RSpec.feature "business dashboard permission" do
     expect(current_path).to eq("/#{my_business.slug}/dashboard")
 
     within(".business_header") do
-      expect(page).to have_content("#{my_business.name} Dashboard") 
+      expect(page).to have_content("#{my_business.name} Dashboard")
     end
 
   end
@@ -35,7 +35,6 @@ RSpec.feature "business dashboard permission" do
 
   scenario "A regular user cannot see a business's dashboard" do
     user = create(:user)
-
     business = create(:business)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -46,4 +45,3 @@ RSpec.feature "business dashboard permission" do
   end
 
 end
-

@@ -1,6 +1,3 @@
-
-# byebug
-
 # 6 Users
 puts "Creating Users..."
 admin = User.create!(username: "admin",
@@ -167,14 +164,13 @@ end
 end
 
 # 7 more categories
-
-  Category.create!(name: "Movies")
-  Category.create!(name: "Books")
-  Category.create!(name: "Antiques")
-  Category.create!(name: "Digital")
-  Category.create!(name: "Analog")
-  Category.create!(name: "Classic Cars")
-  Category.create!(name: "Music & Audio")
+Category.create!(name: "Movies")
+Category.create!(name: "Books")
+Category.create!(name: "Antiques")
+Category.create!(name: "Digital")
+Category.create!(name: "Analog")
+Category.create!(name: "Classic Cars")
+Category.create!(name: "Music & Audio")
 
 
 (4..Category.count).step do |x|
