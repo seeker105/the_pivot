@@ -44,7 +44,7 @@ RSpec.feature "user can place a bid on an item" do
 
       expect(page).not_to have_content("No current bids")
       expect(page).to have_content("Highest Bidder: #{user.username}")
-      expect(page).to have_content("Highest Bid: #{user.bids.last.price}")
+      expect(page).to have_content("Highest Bid: $#{user.bids.last.price}")
     end
 
     scenario "user cannot place the same bid twice on a specific item" do
@@ -67,10 +67,11 @@ RSpec.feature "user can place a bid on an item" do
       visit item_path(item2)
       expect(page).to have_content("No current bids")
       fill_in "bid[price]", with: "10.99"
+      click_button("Place Bid")
 
       expect(page).to_not have_content("Price has already been taken")
       expect(page).to have_content("Highest Bidder: #{user.username}")
-      expect(page).to have_content("Highest Bid: $10.00")
+      expect(page).to have_content("Highest Bid: $10.99")
     end
   end
 end
