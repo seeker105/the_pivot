@@ -2,6 +2,8 @@ class PlatformAdmin::DashboardController < PlatformAdmin::BaseController
 
   def show
     @businesses = Business.all
+    @active_businesses = Business.where(active: true).order(:name)
+    @inactive_businesses = Business.where(active: false).order(:name)
   end
 
   def activate
