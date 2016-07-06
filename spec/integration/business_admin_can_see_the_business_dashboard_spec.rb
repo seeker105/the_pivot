@@ -14,7 +14,7 @@ RSpec.feature "business dashboard permission" do
     expect(current_path).to eq("/#{my_business.slug}/dashboard")
 
     within(".business_header") do
-      expect(page).to have_content("#{my_business.name} Dashboard") 
+      expect(page).to have_content("#{my_business.name} Dashboard")
     end
 
   end
@@ -29,9 +29,6 @@ RSpec.feature "business dashboard permission" do
 
     other_business = create(:business)
 
-    #expect{visit business_dashboard_path(other_business.slug }.to 
-    #  raise_error( ActionController::RoutingError)
-
     visit business_dashboard_path(other_business.slug)
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
@@ -44,12 +41,8 @@ RSpec.feature "business dashboard permission" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(user)
 
-    #expect{visit business_dashboard_path(other_business.slug }.to 
-    #  raise_error( ActionController::RoutingError)
-
     visit business_admin_dashboard_path(other_pusiness.slug)
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 
 end
-
