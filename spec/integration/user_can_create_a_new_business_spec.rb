@@ -22,5 +22,15 @@ RSpec.feature "Business can be created" do
     expect(new_business.admins.include?(user)).to be true
 
     visit business_path(new_business.slug)
+
+    within("#pending_notice") do
+      expect(page).to have_content("This business is pending approval.")
+    end
+
+    visit business_dashboard_path(new_business.slug)
+
+    within("#pending_notice") do
+      expect(page).to have_content("This business is pending approval.")
+    end
   end
 end

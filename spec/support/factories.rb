@@ -70,12 +70,19 @@ FactoryGirl.define do
     "User #{n}"
   end
 
-
-
   factory :business do
     sequence(:name) { |n| "Business Name #{n}"}
     active false
     description "So lit"
-  end
 
+    factory :business_with_items do
+      transient do
+        item_count 3
+      end
+
+      after(:create) do |business, evaluator|
+        create_list(:item, evaluator.item_count, business: business)
+      end
+    end
+  end
 end
