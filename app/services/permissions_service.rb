@@ -19,7 +19,6 @@ class PermissionsService
 
 
     if user
-      return true if controller == "api/v1/businesses" && action == "index"
       return true if controller == "bids" && action.in?(%w(index create))
       return true if controller == "users" && action.in?(%w(show edit update))
 

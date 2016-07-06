@@ -43,12 +43,6 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#show"
   end
 
-  namespace :api, defaults: {format: :json} do
-    namespace :v1 do
-      resources :businesses
-    end
-  end
-
   get "/:slug/edit", to: "businesses#edit", as: "edit_business"
   get "/:slug", to: 'businesses#show', as: :business
   patch "/:slug", to: 'businesses#update', as: "update_business"
