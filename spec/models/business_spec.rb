@@ -1,28 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe Business, type: :model do
-  context "relationships" do
-    it { should have_many(:items) }
-    it { should belong_to(:owner) }
+
+  let(:inactive_business) { build(:business) }
+  let(:active_business) { build(:business, active: true) }
+  let(:persistant_business) { create(:business, active: true, name: "My Fantastic #%&* business") }
+  let(:business_with_items) { create(:business_with_items) }
+  let(:business_with_items) { create(:business_with_items) }
+
+  describe "attributes" do
+    it { expect(inactive_business).to respond_to(:name) }
+    it { expect(inactive_business).to respond_to(:active) }
+    it { expect(inactive_business).to respond_to(:description) }
+    it { expect(inactive_business).to respond_to(:slug) }
+    it { expect(inactive_business).to respond_to(:owner) }
+    it { expect(inactive_business).to respond_to(:business_admins) }
+    it { expect(inactive_business).to respond_to(:admins) }
+    it { expect(inactive_business).to respond_to(:items) }
+    it { expect(active_business).to respond_to(:items) }
   end
 
-  scenario "it creates the slug" do
-    business = create(:business, name: "My Fantastic! @$#%*! Business!")
-
-    assert_equal "my-fantastic-business", business.slug
+  describe "associations" do
+    it { expect(inactive_business).to have_many(:business_admins) }
+    it { expect(inactive_business).to have_many(:admins) }
+    it { expect(inactive_business).to have_many(:items) }
+    it { expect(inactive_business).to belong_to(:owner) }
   end
 
-  scenario "it knows its open items" do
-    business = create(:business)
-    business.items << create_list(:item, 3)
+  it "generates the slug before creation" do
+    expect(inactive_business.slug).to be_nil
+    expect(persistant_business.slug).to_not be_nil
+    expect(persistant_business.slug).to eq("my-fantastic-business")
+   end
 
-    expect(business.open_items.count).to eq 3
+  it "knows its open items" do
+   expect(business_with_items.open_items.count).to eq 3
   end
 
-  scenario "it knows its closed items" do
-    business = create(:business)
-    business.items << create(:item, status: "closed")
+  it "knows its closed items" do
+    item = business_with_items.items.first
+    item.update(status: 1)
+    expect(business_with_items.closed_items.count).to eq 1
+  end
 
-    expect(business.closed_items.count).to eq 1
+  it "can create an active business" do
+    expect(active_business.active?).to be true
   end
 end
