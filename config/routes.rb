@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
 
-  resources :items, only: [:index, :show, :edit] do
+  resources :items, only: [:index, :show, :edit, :update] do
     resources :bids, only: [:index, :create]
   end
 
