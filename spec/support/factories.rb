@@ -25,6 +25,7 @@ FactoryGirl.define do
         create_list(:bid, evaluator.bid_count, user: user)
       end
     end
+
   end
 
   sequence :name do |n|

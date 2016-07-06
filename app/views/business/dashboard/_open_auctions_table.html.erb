@@ -17,7 +17,7 @@
     <td>$<%= item.high_bid%> </td>
     <td><%= format_bidder(item.high_bidder)%> </td>
     <td><%= item.end_time%> </td>
-    <td> <%= link_to "Update", edit_item_path(item) %></td>
+    <td> <%= link_to "Update", edit_business_item_path(@business.slug, item) %></td>
   </tr>
   <% end %>
 </table>

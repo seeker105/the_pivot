@@ -13,10 +13,8 @@ RSpec.feature "business admin updates items" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit business_dashboard_path(business.slug)
-
     click_link "Update"
-
-    expect(current_path).to eq(edit_item_path(item))
+    visit edit_business_item_path(business.slug, item)
 
     fill_in "item[name]", with: new_name
     fill_in "item[description]", with: new_description
@@ -33,5 +31,29 @@ RSpec.feature "business admin updates items" do
 
       expect(page).not_to have_content(item.name)
     end
+  end
+
+  scenario "default user cannot edit items" do
+    business = create(:business)
+    item = create(:item, business: business)
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit edit_business_item_path(business.slug, item)
+
+    expect(page).to have_content("The page you were looking for doesn't exist")
+  end
+
+  scenario "admins can only edit items that belong to their business" do
+    not_my_item = create(:item)
+    admin = create(:user)
+    business = create(:business)
+    admin.businesses << business
+    not_my_business = create(:business)
+    # byebug
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit edit_business_item_path(not_my_business.slug, not_my_item)
+    expect(page).to have_content("The page you were looking for doesn't exist")
   end
 end
