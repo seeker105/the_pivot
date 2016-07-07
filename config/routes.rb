@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => "items#index"
+  root :to => "categories#index"
 
   # Sessions:
   get '/login', to: 'sessions#new'
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   scope '/:slug', as: :business do
     resources :items, only: [:edit, :update]
   end
-  
+
   namespace :business, path: "/:slug", as: :business do
     get "/dashboard", to: "dashboard#show"
   end

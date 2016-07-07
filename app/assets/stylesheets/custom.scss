@@ -73,9 +73,9 @@
 
 #page_header img {
   flex-shrink:0;
-  min-width:100%;
+  min-width:50%;
   min-height:100%;
-  -webkit-filter: brightness(40%);
+  -webkit-filter: brightness(50%);
 }
 
 #scroll-icon {
@@ -194,6 +194,7 @@ img.img-thumbnail {
 a:visited {
   color: #003541;
 }
+
 
 //----------PlatformAdmin Show Page
 .activate {
