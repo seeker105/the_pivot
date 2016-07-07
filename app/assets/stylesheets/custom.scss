@@ -133,10 +133,6 @@
   text-align: center;
 }
 
-a:visited {
-  color: #EEF5DB;
-}
-
 //----------Cart---------
 #cart-thumb {
   height: 50px;
@@ -193,4 +189,21 @@ body {
 img.img-thumbnail {
     box-shadow: 6px 6px 30px #aaa;
     box-shadow: 8;
+}
+
+a:visited {
+  color: #003541;
+}
+
+//----------PlatformAdmin Show Page
+.activate {
+  color: green;
+}
+
+.deactivate {
+  color: red;
+}
+
+hr {
+  color: black;
 }

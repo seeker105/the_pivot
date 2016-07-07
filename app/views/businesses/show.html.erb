@@ -4,6 +4,10 @@
   <%= @business.description %>
 </div>
 
-<% if @business.items.exists? %>
-  <%= render "shared/item_list" %>
+<% if @business.active? %>
+  <% if @business.items.exists? %>
+    <%= render "shared/item_list" %>
+  <% end  %>
+  <% else %>
+  <p id="pending_notice" >This business is pending approval.</p>
 <% end  %>

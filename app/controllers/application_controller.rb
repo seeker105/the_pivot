@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
 
 private
   def authorize!
-    #redirect_to(root_url, danger: "You are not authorized") unless authorized?
     render file: "public/404" unless authorized?
   end
 
