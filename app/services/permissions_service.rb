@@ -20,6 +20,7 @@ class PermissionsService
     if user
       return true if controller == "bids" && action.in?(%w(index create))
       return true if controller == "users" && action.in?(%w(show edit update))
+      return true if controller == "businesses" && action.in?(%w(new create))
 
       if user.platform_admin?
         return true if controller == "platform_admin/dashboard" && action == "show"

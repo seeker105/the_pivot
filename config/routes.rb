@@ -6,15 +6,13 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-
   # Basic resources
   #resources :items, only: [:index, :show]
   resources :users, only: [:new, :index, :create]
   get "/user/edit", to: "users#edit"
   patch "/user/edit", to: "users#update"
 
-
-  resources :businesses, only: [:index]
+  resources :businesses, only: [:index, :new, :create]
 
   # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
 
