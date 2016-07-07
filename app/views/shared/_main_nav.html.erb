@@ -1,15 +1,15 @@
 <nav class ="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid" id="main-navbar">
     <div class="navbar-header" id="site-header">
-      <%= link_to image_tag('icon_new.png', id: "icon"), root_path %>
       <div id="brand-text">
-        <div id="site-title">
-          HIPTIQUE
+        <span class="glyphicon glyphicon-fire"></span>
+        <div id="site-title",>
+          LITBIDS
         </div>
-      </div>
+      </div><br>
+
     </div>
     <ul class="nav navbar-nav navbar-right" id="main-nav">
-        <li><%= link_to "Business Index", businesses_path %></li>
       <% if current_user %>
         <li><%= link_to "Logged in as #{current_user.username}.", dashboard_path %></li>
         <li><%= link_to "Log Out", logout_path, method: :delete %></li>
