@@ -8,7 +8,6 @@ class PermissionsService
   end
 
   def allow?
-    # byebug
     return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
@@ -42,7 +41,6 @@ class PermissionsService
 
       end
     end
-    # y=1+2
   end
 
   private

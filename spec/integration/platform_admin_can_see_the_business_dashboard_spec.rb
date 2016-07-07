@@ -15,7 +15,7 @@ RSpec.feature "business dashboard permission" do
   end
 
 
-  scenario "A platform admin can see a business' dashboard" do
+  scenario "A platform admin can see all businesses' dashboard" do
 
     admin = create(:user, platform_admin: true)
     user1 = create(:user)
