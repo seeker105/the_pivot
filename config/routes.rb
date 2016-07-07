@@ -34,24 +34,16 @@ Rails.application.routes.draw do
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
 
-  # scope '/:slug', as: :business do
-  # end
-
   namespace :business, path: "/:slug", as: :business do
-    # get "/dashboard", to: "dashboard#show"
+    get "/dashboard", to: "dashboard#show"
   end
 
-  # get "/:slug", to: 'businesses#show', as: :business
-  # patch "/:slug", to: 'businesses#update', as: "update_business"
-  # get "/edit", to: "businesses#edit", as: "edit_business"
-
-  # resources :businesses, param: :slug
+# ============ Refactor ============================
 
   scope '/:slug', as: :business do
     get "/", to: 'businesses#show'
-    patch "/", to: 'businesses#update', as: "update"
     get "/edit", to: "businesses#edit", as: "edit"
+    patch "/", to: 'businesses#update', as: "update"
     resources :items, only: [:edit, :update]
-
   end
 end
