@@ -6,7 +6,7 @@ RSpec.feature "admin sees predicted final auction price" do
     #finish this setup
     item = create(:item_with_bids)
 
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit item_path(item)
 
