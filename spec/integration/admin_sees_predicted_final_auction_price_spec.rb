@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "admin sees predicted final auction price" do
   scenario "on the item show page" do
-    admin = create(:user_with_businesses)
+    admin = create(:user)
+    #finish this setup
     item = create(:item_with_bids)
-    # predicor = PredictorService.new(?)
 
     allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(admin)
 
