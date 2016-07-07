@@ -6,4 +6,8 @@ module ApplicationHelper
       "None"
     end
   end
+
+  def order_items_by_id(items)
+    items.order(:id)
+  end
 end
