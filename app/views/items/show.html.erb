@@ -23,6 +23,6 @@
       This item's auction has ended!
       </p>
     <% end  %>
-    <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(@item.business.slug) %> </div>
+    <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug) %> </div>
   </div>
 </div>

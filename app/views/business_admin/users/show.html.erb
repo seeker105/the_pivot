@@ -3,9 +3,18 @@
   <h2>Welcome, <%= @user.name%> </h2>
 </div>
 
-<div class="business_list"
-<h2>Your Businesses</h2>
-<% @businesses.each do |business| %>
-  <%= link_to business.name, business_dashboard_path(slug: business.slug) %>
+<div class="business_list">
+<% if platform_admin? %>
+  <h4>All Businesses</h4>
+<% else %>
+  <h4>Your Businesses</h4>
 <% end %>
+<ul>
+<% @businesses.each do |business| %>
+<li id=<%= business.slug %> >
+  <h3><%= link_to business.name, business_dashboard_path(business.slug)%></h3>
+  <h4><%= link_to business.description, business_dashboard_path(business.slug) %></h4>
+</li>
+<% end %>
+</ul>
 </div>
