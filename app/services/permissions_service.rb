@@ -8,6 +8,7 @@ class PermissionsService
   end
 
   def allow?
+    # byebug
     return true if controller == "sessions" && action == "new"
     return true if controller == "sessions" && action == "create"
     return true if controller == "sessions" && action == "destroy"
@@ -26,19 +27,22 @@ class PermissionsService
         return true if controller == "platform_admin/dashboard" && action == "show"
         return true if controller == "platform_admin/dashboard" && action == "activate"
         return true if controller == "platform_admin/dashboard" && action == "deactivate"
-
+        return true if controller == "business/dashboard" && action == "show"
       elsif user.admin?
         return true if controller == "business_admin/users" && action == "show"
+        return true if controller == "business/dashboard" && action == "show"
 
         if business && business.admins.include?(user)
           return true if controller == "business/dashboard" && action == "show"
           return true if controller == "businesses" && action.in?(%w(edit update))
         end
 
-      elsif business && user == business.owner
+
+      elsif business && (user == business.owner)
 
       end
     end
+    # y=1+2
   end
 
   private
