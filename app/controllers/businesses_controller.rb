@@ -36,7 +36,8 @@ class BusinessesController < ApplicationController
     user.businesses << @business
 
     if @business.save
-      flash[:success] = "Business successfully created!"
+      flash[:success] = "#{@business.name} has been created and is pending approval. \
+      Approval process on average takes 1-2 business days."
       redirect_to dashboard_path
     else
       flash.now[:error] = @business.errors.full_messages
