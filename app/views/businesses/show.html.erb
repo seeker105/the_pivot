@@ -1,13 +1,18 @@
-<%= link_to "Update Business Information", edit_business_path(@business.slug) %>
 <div class="business_info">
   <h1><%= @business.name %></h1>
   <%= @business.description %>
 </div>
 
+<% if current_user %>
+  <% if current_user.admin? || current_user.platform_admin? %>
+    <%= link_to "View Business Dashboard", business_dashboard_path(@business.slug) %>
+  <% end  %>
+<% end %>
+
 <% if @business.active? %>
   <% if @business.items.exists? %>
     <%= render "shared/item_list" %>
   <% end  %>
-  <% else %>
+<% else %>
   <p id="pending_notice" >This business is pending approval.</p>
 <% end  %>
