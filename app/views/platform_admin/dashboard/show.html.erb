@@ -4,7 +4,7 @@
 <ul>
   <% @active_businesses.each do |business| %>
         <li id=<%= business.slug %> >
-          <h3><%= link_to business.name, edit_business_path(business.slug)%></h3>
+          <h3><%= link_to business.name, business_dashboard_path(business.slug)%></h3>
           <h4><%= link_to business.description, business_dashboard_path(business.slug) %></h4>
           Status: <%= business.status %>
           <%= link_to "Deactivate", platform_admin_deactivate_path(slug: business.slug), class: "deactivate" %>
@@ -16,7 +16,7 @@
 <ul>
   <% @inactive_businesses.each do |business| %>
       <li id=<%= business.slug %> >
-        <h3><%= link_to business.name, edit_business_path(business.slug)%></h3>
+        <h3><%= link_to business.name, business_dashboard_path(business.slug)%></h3>
         <h4><%= link_to business.description, business_dashboard_path(business.slug) %></h4>
           Status: <%= business.status %>
           <%= link_to "Activate", platform_admin_activate_path(slug: business.slug), class:"activate"%>
