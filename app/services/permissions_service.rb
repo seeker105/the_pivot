@@ -27,12 +27,12 @@ class PermissionsService
         return true if controller == "platform_admin/dashboard" && action == "activate"
         return true if controller == "platform_admin/dashboard" && action == "deactivate"
         return true if controller == "business_admin/users" && action == "show"
-        return true if controller == "business/dashboard" && action == "show"
+        return true if controller == "dashboard" && action == "show"
         return true if controller == "businesses" && action.in?(%w(edit update))
         return true if controller == "items" && action.in?(%w(edit update))
       elsif user.admin?
         return true if controller == "business_admin/users" && action == "show"
-        return true if controller == "business/dashboard" && action == "show"
+        return true if controller == "dashboard" && action == "show"
         return true if controller == "businesses" && action.in?(%w(edit update))
         return true if controller == "items" && action.in?(%w(edit update))
       end

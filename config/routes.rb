@@ -27,23 +27,21 @@ Rails.application.routes.draw do
     get "/deactivate/:slug", to: "dashboard#deactivate", as: :deactivate
   end
 
+  # Business admin dashboard:
   namespace :business_admin do
     get "/dashboard" => "users#show"
   end
 
+  # Miscellaneous:
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
 
-  namespace :business, path: "/:slug", as: :business do
-    get "/dashboard", to: "dashboard#show"
-  end
-
-# ============ Refactor ============================
-
+  #Business vanity routes:
   scope '/:slug', as: :business do
     get "/", to: 'businesses#show'
     get "/edit", to: "businesses#edit", as: "edit"
     patch "/", to: 'businesses#update', as: "update"
+    get "/dashboard", to: "dashboard#show"
     resources :items, only: [:edit, :update]
   end
 end
