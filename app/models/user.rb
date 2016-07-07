@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.businesses.exists?
+    self.businesses.exists? || self.platform_admin?
   end
 
   def won_items

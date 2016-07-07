@@ -6,7 +6,6 @@ class PlatformAdmin::DashboardController < PlatformAdmin::BaseController
   end
 
   def activate
-    # byebug
     Business.find_by(slug: params[:slug]).update_attribute("active", true)
     redirect_to request.referrer
   end

@@ -60,7 +60,6 @@ RSpec.feature "platform admin sees a list of businesses" do
       click_link("Activate")
     end
     expect(current_path).to eq(platform_admin_dashboard_path)
-
     within("#"+businesses[2].slug) do
       expect(page).to have_content(businesses[2].name)
       expect(page).to have_link("Deactivate")
@@ -92,7 +91,7 @@ RSpec.feature "platform admin sees a list of businesses" do
       click_link("Deactivate")
     end
     expect(current_path).to eq(platform_admin_dashboard_path)
-    
+
     within("#"+businesses[0].slug) do
       expect(page).to have_content(businesses[0].name)
       expect(page).to have_link("Activate")

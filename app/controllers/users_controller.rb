@@ -25,10 +25,10 @@ class UsersController < ApplicationController
 
     @user = current_user
 
-    if current_user.admin?
-      redirect_to business_admin_dashboard_path
-    elsif current_user.platform_admin?
+    if current_user.platform_admin?
       redirect_to platform_admin_dashboard_path
+    elsif current_user.admin?
+      redirect_to business_admin_dashboard_path
     else
       render :show
     end
