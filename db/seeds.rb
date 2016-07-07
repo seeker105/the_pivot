@@ -1,13 +1,5 @@
 # 6 Users
 puts "Creating Users..."
-admin = User.create!(username: "user",
-                     password: "password",
-                     email: "bsayler@example.com",
-                     name: "Brian Sayler",
-                     address: "1510 Blake St",
-                     city: "Denver",
-                     state: "CO",
-                     zip: "80111")
 jorge = User.create!(username: "jorge",
                      password: "password",
                      email: "jorge@turing.io",
@@ -17,22 +9,6 @@ jorge = User.create!(username: "jorge",
                      state: Faker::Address.state_abbr,
                      zip: Faker::Address.zip,
                      platform_admin: true)
-jcasimir = User.create!(username: "jcasimir",
-                        password: "password",
-                        email: "jcasimir@example.com",
-                        name: "Jeff Casimir",
-                        address: "1510 Blake St",
-                        city: "Denver",
-                        state: "CO",
-                        zip: "80111")
-mdao = User.create!(username: "mdao",
-                    password: "password",
-                    email: "mdao@example.com",
-                    name: "Mike Dao",
-                    address: "1510 Denver St",
-                    city: "Blake",
-                    state: "CO",
-                    zip: "80111")
 neight = User.create!(username: "neight",
                       password: "password",
                       email: "nate@turing.io",
@@ -49,6 +25,31 @@ jmejia = User.create!(username: "jmejia",
                       city: Faker::Address.city,
                       state: Faker::Address.state_abbr,
                       zip: Faker::Address.zip)
+user = User.create!(username: "user",
+                     password: "password",
+                     email: "bsayler@example.com",
+                     name: "Brian Sayler",
+                     address: "1510 Blake St",
+                     city: "Denver",
+                     state: "CO",
+                     zip: "80111")
+jcasimir = User.create!(username: "jcasimir",
+                        password: "password",
+                        email: "jcasimir@example.com",
+                        name: "Jeff Casimir",
+                        address: "1510 Blake St",
+                        city: "Denver",
+                        state: "CO",
+                        zip: "80111")
+mdao = User.create!(username: "mdao",
+                    password: "password",
+                    email: "mdao@example.com",
+                    name: "Mike Dao",
+                    address: "1510 Denver St",
+                    city: "Blake",
+                    state: "CO",
+                    zip: "80111")
+
 94.times do
   User.create!(username: Faker::Internet.email,
                password: "password",
@@ -66,9 +67,9 @@ puts "Creating Businesses..."
 20.times do |x|
   business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
-                  active: (x < 15),
-                  owner: neight)
-  business.admins << User.find(x+3)
+                  active: (x < 15)
+                  )
+  neight.businesses << business
 end
 puts "Created Businesses"
 
