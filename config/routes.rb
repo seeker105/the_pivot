@@ -6,22 +6,19 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  # Basic resources
-  #resources :items, only: [:index, :show]
+  # Users:
   resources :users, only: [:new, :index, :create]
   get "/user/edit", to: "users#edit"
   patch "/user/edit", to: "users#update"
+  get "/dashboard" => "users#show", as: "dashboard"
 
+  # Businesses:
   resources :businesses, only: [:index, :new, :create]
 
-  # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
-
+  # Items and Bids:
   resources :items, only: [:index, :show] do
     resources :bids, only: [:index, :create]
   end
-
-  # User Dashboard
-  get "/dashboard" => "users#show", as: "dashboard"
 
   # Admin Functionality:
   namespace :platform_admin do
@@ -37,15 +34,24 @@ Rails.application.routes.draw do
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
 
-  scope '/:slug', as: :business do
-    resources :items, only: [:edit, :update]
-  end
-  
+  # scope '/:slug', as: :business do
+  # end
+
   namespace :business, path: "/:slug", as: :business do
-    get "/dashboard", to: "dashboard#show"
+    # get "/dashboard", to: "dashboard#show"
   end
 
-  get "/:slug/edit", to: "businesses#edit", as: "edit_business"
-  get "/:slug", to: 'businesses#show', as: :business
-  patch "/:slug", to: 'businesses#update', as: "update_business"
+  # get "/:slug", to: 'businesses#show', as: :business
+  # patch "/:slug", to: 'businesses#update', as: "update_business"
+  # get "/edit", to: "businesses#edit", as: "edit_business"
+
+  # resources :businesses, param: :slug
+
+  scope '/:slug', as: :business do
+    get "/", to: 'businesses#show'
+    patch "/", to: 'businesses#update', as: "update"
+    get "/edit", to: "businesses#edit", as: "edit"
+    resources :items, only: [:edit, :update]
+
+  end
 end
