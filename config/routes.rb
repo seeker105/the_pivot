@@ -39,6 +39,10 @@ Rails.application.routes.draw do
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
 
+  scope '/:slug', as: :business do
+    resources :items, only: [:edit, :update]
+  end
+  
   namespace :business, path: "/:slug", as: :business do
     get "/dashboard", to: "dashboard#show"
   end
