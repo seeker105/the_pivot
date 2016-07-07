@@ -1,7 +1,8 @@
-<h2> Welcome, <%= @user.name %></h2>
-<%= link_to "Update Personal Account Information", user_edit_path(id: @user.id) %><br>
-<%= link_to "Create New Business", new_business_path %><br>
-
+<div id="user-dashboard">
+  <h2> Welcome, <%= @user.name %></h2>
+  <%= link_to "Update Personal Account Information", user_edit_path(id: @user.id) %><br>
+  <%= link_to "Create A New Business", new_business_path %><br>
+</div>
 
 <% if @user.items.any? %>
   <%= render partial: 'auction_buttons' %>
