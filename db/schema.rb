@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704195125) do
+ActiveRecord::Schema.define(version: 20160707204132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,10 @@ ActiveRecord::Schema.define(version: 20160704195125) do
     t.string   "name"
     t.boolean  "active",      default: false
     t.string   "slug"
-    t.integer  "owner_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "description"
   end
-
-  add_index "businesses", ["owner_id"], name: "index_businesses_on_owner_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -88,6 +85,5 @@ ActiveRecord::Schema.define(version: 20160704195125) do
   add_foreign_key "bids", "users"
   add_foreign_key "business_admins", "businesses"
   add_foreign_key "business_admins", "users"
-  add_foreign_key "businesses", "users", column: "owner_id"
   add_foreign_key "items", "businesses"
 end
