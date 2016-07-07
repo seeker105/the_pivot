@@ -1,9 +1,9 @@
 # 6 Users
 puts "Creating Users..."
-admin = User.create!(username: "admin",
-                     password: "admin",
-                     email: "jcasimir@example.com",
-                     name: "Jeff Casimir",
+admin = User.create!(username: "user",
+                     password: "password",
+                     email: "bsayler@example.com",
+                     name: "Brian Sayler",
                      address: "1510 Blake St",
                      city: "Denver",
                      state: "CO",
