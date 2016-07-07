@@ -36,11 +36,11 @@ class Learner
     new_theta0 = 0
     new_theta1 = 0
     10000.times do
-      cost(hypothesis)
+      # p cost(hypothesis)
       new_theta0 = update_theta0(hypothesis)
       new_theta1 = update_theta1(hypothesis)
       hypothesis = Hypothesis.new(new_theta0, new_theta1)
     end
-    [new_theta0, new_theta1]
+     [new_theta0, new_theta1]
   end
 end

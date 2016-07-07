@@ -13,7 +13,7 @@ class DataPreparer
 
   def outputs
     bids.map do |bid|
-      bid.price
+      bid.price.to_f
     end
   end
 
@@ -21,7 +21,7 @@ class DataPreparer
     raw_pairs = inputs.zip(outputs)
     raw_pairs.map do |pair|
       {i: pair[0], o: pair[1]}
-    end 
+    end
   end
 
 private
