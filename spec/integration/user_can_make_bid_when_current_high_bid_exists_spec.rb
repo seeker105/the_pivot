@@ -18,12 +18,12 @@ RSpec.feature "user can place a bid on an item when a bid already exists" do
     visit item_path(item)
     expect(page).not_to have_content("No current bids")
     expect(page).to have_content("Highest Bidder: #{user1.username}")
-    expect(page).to have_content("Highest Bid: #{user1.bids.last.price}")
+    expect(page).to have_content("Highest Bid: $#{user1.bids.last.price}")
 
     fill_in "bid[price]", with: "15.99"
     click_button("Place Bid")
     expect(page).to have_content("Highest Bidder: #{user2.username}")
-    expect(page).to have_content("Highest Bid: #{user2.bids.last.price}")
+    expect(page).to have_content("Highest Bid: $#{user2.bids.last.price}")
 
     expect(page).not_to have_content("Highest Bid: #{user1.bids.last.price}")
   end
@@ -46,7 +46,7 @@ RSpec.feature "user can place a bid on an item when a bid already exists" do
     visit item_path(item)
     expect(page).not_to have_content("No current bids")
     expect(page).to have_content("Highest Bidder: #{user1.username}")
-    expect(page).to have_content("Highest Bid: #{user1.bids.last.price}")
+    expect(page).to have_content("Highest Bid: $#{user1.bids.last.price}")
 
     fill_in "bid[price]", with: "4.99"
     click_button("Place Bid")

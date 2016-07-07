@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "business dashboard shows item info" do
   scenario "for a business with no items" do
     admin = create(:user)
-    business = create(:business)
+    business = create(:business, active: true)
     admin.businesses << business
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -16,7 +16,7 @@ RSpec.feature "business dashboard shows item info" do
 
   scenario "for a business with open auctions" do
     admin = create(:user)
-    business = create(:business)
+    business = create(:business, active: true)
     admin.businesses << business
     items = business.items << create_list(:item, 2)
     extra_item = create(:item)
@@ -42,14 +42,14 @@ RSpec.feature "business dashboard shows item info" do
 
   scenario "for a business with open and closed auctions" do
     admin = create(:user)
-    admin.businesses << create(:business)
+    admin.businesses << create(:business, active: true)
     business = admin.businesses.first
     business.items << create(:item)
     business.items << create(:item, status: "closed")
     open_item = business.items.first
     closed_item = business.items.last
 
-    other_business = create(:business)
+    other_business = create(:business, active: true)
     other_business.items << create(:item, status: "closed")
     other_item = other_business.items.first
 

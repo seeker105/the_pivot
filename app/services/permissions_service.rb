@@ -17,10 +17,10 @@ class PermissionsService
     return true if controller == "businesses" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(create new))
 
-
     if user
       return true if controller == "bids" && action.in?(%w(index create))
       return true if controller == "users" && action.in?(%w(show edit update))
+      return true if controller == "businesses" && action.in?(%w(new create))
 
       if user.platform_admin?
         return true if controller == "platform_admin/dashboard" && action == "show"
@@ -34,6 +34,7 @@ class PermissionsService
         if business && business.admins.include?(user)
           return true if controller == "business/dashboard" && action == "show"
           return true if controller == "businesses" && action.in?(%w(edit update))
+          return true if controller == "items" && action.in?(%w(edit update))
         end
 
 
