@@ -3,10 +3,8 @@
   <%= @business.description %>
 </div>
 
-<% if current_user %>
-  <% if current_user.admin? || current_user.platform_admin? %>
+<% if current_admin? %>
     <%= link_to "View Business Dashboard", business_dashboard_path(@business.slug) %>
-  <% end  %>
 <% end %>
 
 <% if @business.active? %>
