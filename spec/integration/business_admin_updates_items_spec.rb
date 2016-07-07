@@ -8,7 +8,6 @@ RSpec.feature "business admin updates items" do
     new_name = "Updated Name"
     new_description = "Updated Description"
 
-# byebug
     admin.businesses << business
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)

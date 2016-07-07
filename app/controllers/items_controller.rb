@@ -4,13 +4,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # byebug
     @item = Item.find(params[:id])
     @bid = Bid.new
   end
 
   def edit
-    # byebug
     if current_user.platform_admin?
       @business = Business.find_by(slug: params[:slug])
       @item = Item.find(params[:id])
