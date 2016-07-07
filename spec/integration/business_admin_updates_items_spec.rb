@@ -8,12 +8,14 @@ RSpec.feature "business admin updates items" do
     new_name = "Updated Name"
     new_description = "Updated Description"
 
+# byebug
     admin.businesses << business
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit business_dashboard_path(business.slug)
     click_link "Update"
+
     visit edit_business_item_path(business.slug, item)
 
     fill_in "item[name]", with: new_name
