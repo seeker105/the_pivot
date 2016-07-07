@@ -27,13 +27,14 @@ Rails.application.routes.draw do
 
   # Admin Functionality:
   namespace :platform_admin do
-    get "/dashboard", to: "users#show"
+    get "/dashboard", to: "dashboard#show"
+    get "/activate/:slug", to: "dashboard#activate", as: :activate
+    get "/deactivate/:slug", to: "dashboard#deactivate", as: :deactivate
   end
 
   namespace :business_admin do
     get "/dashboard" => "users#show"
   end
-
 
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"

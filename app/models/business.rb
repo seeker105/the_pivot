@@ -17,6 +17,10 @@ class Business < ActiveRecord::Base
     self.items.where(status: 1)
   end
 
+  def status
+    self.active ? "Active" : "Inactive"
+  end
+
 private
   def create_slug
     self.slug = self.name.parameterize

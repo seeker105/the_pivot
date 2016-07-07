@@ -22,6 +22,9 @@ class PermissionsService
       return true if controller == "users" && action.in?(%w(show edit update))
 
       if user.platform_admin?
+        return true if controller == "platform_admin/dashboard" && action == "show"
+        return true if controller == "platform_admin/dashboard" && action == "activate"
+        return true if controller == "platform_admin/dashboard" && action == "deactivate"
 
       elsif user.admin?
         return true if controller == "business_admin/users" && action == "show"
