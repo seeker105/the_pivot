@@ -3,11 +3,15 @@
 </div>
 
 <div class="business_items">
-  <% if @business.items.exists? %>
-    <%= render partial: 'open_auctions_table' %>
-    <%= render partial: 'closed_auctions_table' %>
-  <% else  %>
-    <p>There are no items for this business yet.</p>
-  <% end  %>
+  <% if @business.active? %>
 
+    <% if @business.items.exists? %>
+      <%= render partial: 'open_auctions_table' %>
+      <%= render partial: 'closed_auctions_table' %>
+    <% else  %>
+      <p>There are no items for this business yet.</p>
+    <% end  %>
+  <% else %>
+    <p id="pending_notice">This business is pending approval.</p>
+  <% end %>
 </div>
