@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_constants
   before_action :authorize!
-  helper_method :current_user, :current_admin?
+  helper_method :current_user, :current_admin?, :platform_admin?
 
   def set_constants
     @categories = Category.all
@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
     send_file Rails.root.join("app", "assets", "images", "favicon.ico"), type: "image/gif", disposition: "inline"
   end
 
+  def platform_admin?
+    current_user.platform_admin
+  end
 
 private
   def authorize!
