@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get "/", to: 'businesses#show'
     get "/edit", to: "businesses#edit", as: "edit"
     patch "/", to: 'businesses#update', as: "update"
-    get "/dashboard", to: "dashboard#show"
+    get "/dashboard", to: "business_dashboard#show"
     resources :items, only: [:edit, :update]
   end
 end
