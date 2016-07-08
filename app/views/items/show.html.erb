@@ -8,7 +8,7 @@
     <p><%= @item.description %></p>
     <h5>Starting Price: <%= number_to_currency(@item.price) %></h5>
 
-    <h5>Bid End Time<%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
+    <h5>Auction End Time<%= format_datetime(@item.end_time)%></h5>
     <div id="clockdiv">
       <div>
         <span class="days"></span>
@@ -28,8 +28,6 @@
       </div>
     </div>
 
-    <p> <%= Time.now.strftime("%b %e, %l:%M %p %Z")%></p>
-    
     <% if @item.open?  %>
       <% if @item.high_bid == 0.00 %>
       <p>
@@ -55,5 +53,3 @@
   var deadline = new Date(item_end_date);
   initializeClock('clockdiv', deadline)
 </script>
-
-
