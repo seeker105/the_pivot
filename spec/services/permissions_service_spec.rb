@@ -340,5 +340,56 @@ RSpec.feature do
         expect(page).to have_content("Description")
       end
     end
+
+    scenario 'business#show' do
+      user = create(:user, platform_admin: true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      business1 = create(:business, active: true)
+      business2 = create(:business)
+      item1 = create(:item)
+      item2 = create(:item)
+      business1.items << item1
+      business2.items << item2
+
+      visit business_path(slug: business1.slug)
+      within('#site_content') do
+        expect(page).to have_content("View Business Dashboard")
+        expect(page).to have_content(business1.name)
+        expect(page).to have_content(business1.description)
+        expect(page).to have_content(item1.name)
+      end
+
+      visit business_path(slug: business2.slug)
+      within('#site_content') do
+        expect(page).to have_content("View Business Dashboard")
+        expect(page).to have_content(business2.name)
+        expect(page).to have_content(business2.description)
+        expect(page).to have_content("This business is pending approval.")
+        expect(page).to have_no_content(item2.name)
+      end
+    end
+
+    scenario 'business_admin/users#show' do
+      user = create(:user, platform_admin: true)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      business1 = create(:business, active: true)
+      business2 = create(:business)
+      item1 = create(:item)
+      item2 = create(:item)
+      business1.items << item1
+      business2.items << item2
+
+      visit business_admin_dashboard_path
+      within('#site_content') do
+        expect(page).to have_content("Business Admin Dashboard")
+        expect(page).to have_content("Welcome, #{user.name}")
+        expect(page).to have_content("All Businesses")
+        expect(page).to have_content(business1.name)
+        expect(page).to have_content(business1.description)
+        expect(page).to have_content(business2.name)
+        expect(page).to have_content(business2.description)
+      end
+    end
+
   end # of context 'platform admin'
 end # of test
