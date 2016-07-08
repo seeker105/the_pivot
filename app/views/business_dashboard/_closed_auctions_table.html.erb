@@ -15,7 +15,7 @@
     <td><%= item.id %> </td>
     <td>$<%= item.high_bid%> </td>
     <td><%= format_bidder(item.high_bidder)%> </td>
-    <td><%= item.end_time%> </td>
+    <td><%= format_datetime(item.end_time)%> </td>
   </tr>
   <% end %>
 </table>

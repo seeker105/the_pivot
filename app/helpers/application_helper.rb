@@ -23,4 +23,8 @@ module ApplicationHelper
   def order_items_by_id(items)
     items.order(:id)
   end
+
+  def format_datetime(time)
+    time.strftime("%b %e, %l:%M %p %Z")
+  end
 end
