@@ -15,7 +15,8 @@
       </p>
       <% else %>
         Highest Bid: <%= number_to_currency(@item.high_bid) %><br>
-        Highest Bidder: <%= format_bidder(@item.high_bidder) %>
+        Highest Bidder: <%= format_bidder(@item.high_bidder) %><br>
+        Predicted Selling Price: <%= predict_price(@item) %>
       <% end %>
       <%= render partial: "new_bid", locals: {item: @item}%>
     <% else %>
