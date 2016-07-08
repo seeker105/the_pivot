@@ -1,10 +1,17 @@
 <div id="bid_form">
-<% if current_user %>
-      <%= form_for ([item, @bid]) do |f| %>
-        <%= f.number_field :price, min: item.min_bid, class: "form-control", step: 0.01 %>
-        <%= f.submit "Place Bid" %>
-      <% end  %>
+  <% if current_user %>
 
+    <form class="form-inline">
+      <div class="form-group">
+      <%= form_for ([item, @bid]) do |f| %>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <%= f.number_field :price, min: item.min_bid, class: "form-control", step: 0.01 %>
+        </div>
+        <%= f.submit "Place Bid", class: "btn btn-secondary form-control" %>
+      <% end  %>
+      </div>
+    </form>
     <% else %>
       <%= link_to "Login or Create Account to Bid", login_path %>
     <%end%>

@@ -10,6 +10,10 @@ class Item < ActiveRecord::Base
 
   enum status: ["open", "closed"]
 
+  def has_bids?
+    bids.exists?
+  end
+
   def high_bid
     high_bid = bids.maximum('price')
     high_bid ? high_bid : 0.00
@@ -33,5 +37,11 @@ class Item < ActiveRecord::Base
 
   def self.active
     joins(:business).where(businesses: {active: true})
+  end
+
+  def update_own_status
+    if self.end_time < DateTime.now 
+      self.update_attributes(status: 1)
+    end
   end
 end
