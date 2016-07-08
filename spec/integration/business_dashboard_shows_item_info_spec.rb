@@ -29,12 +29,12 @@ RSpec.feature "business dashboard shows item info" do
       expect(page).to have_content(items[0].name)
       expect(page).to have_content(items[0].high_bid)
       expect(page).to have_content(items[0].high_bidder)
-      expect(page).to have_content(items[0].end_time)
+      expect(page).to have_content(items[0].end_time.strftime("%b %e, %l:%M %p %Z"))
 
       expect(page).to have_content(items[1].name)
       expect(page).to have_content(items[1].high_bid)
       expect(page).to have_content(items[1].high_bidder)
-      expect(page).to have_content(items[1].end_time)
+      expect(page).to have_content(items[1].end_time.strftime("%b %e, %l:%M %p %Z"))
 
       expect(page).not_to have_content(extra_item.name)
     end
@@ -61,16 +61,16 @@ RSpec.feature "business dashboard shows item info" do
       expect(page).to have_content(open_item.name)
       expect(page).to have_content(open_item.high_bid)
       expect(page).to have_content(open_item.high_bidder)
-      expect(page).to have_content(open_item.end_time)
+      expect(page).to have_content(open_item.end_time.strftime("%b %e, %l:%M %p %Z"))
 
       expect(page).not_to have_content(closed_item.name)
     end
 
-    within("#closed_auction") do
+    within("#won_auction") do
       expect(page).to have_content(closed_item.name)
       expect(page).to have_content(closed_item.high_bid)
       expect(page).to have_content(closed_item.high_bidder)
-      expect(page).to have_content(closed_item.end_time)
+      expect(page).to have_content(closed_item.end_time.strftime("%b %e, %l:%M %p %Z"))
 
       expect(page).not_to have_content(open_item.name)
       expect(page).not_to have_content(other_item.name)

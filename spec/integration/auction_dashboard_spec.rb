@@ -18,7 +18,7 @@ RSpec.feature "display auction dashboard" do
       expect(page).to have_content("Current High Bidder")
       expect(page).to have_content(item.high_bidder.username)
       expect(page).to have_content("Auction End Date")
-      expect(page).to have_content(item.end_time)
+      expect(page).to have_content(item.end_time.strftime("%b %e, %l:%M %p %Z"))
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.feature "display auction dashboard" do
       expect(page).to have_content("Price Paid")
       expect(page).to have_content(item_won.high_bid)
       expect(page).to have_content("Payment Date")
-      expect(page).to have_content(item_won.end_time)
+      expect(page).to have_content(item_won.end_time.strftime("%b %e, %l:%M %p %Z"))
 
       expect(page).not_to have_content(item2.name)
       expect(page).not_to have_content(item3.name)
@@ -80,7 +80,7 @@ RSpec.feature "display auction dashboard" do
       expect(page).to have_content("Auctions Lost")
       expect(page).to have_content(item_lost.name)
       expect(page).to have_content("Date Auction Closed")
-      expect(page).to have_content(item_lost.end_time)
+      expect(page).to have_content(item_lost.end_time.strftime("%b %e, %l:%M %p %Z"))
       expect(page).not_to have_content(item2.name)
       expect(page).not_to have_content(item3.name)
     end
