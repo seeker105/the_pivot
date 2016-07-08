@@ -6,7 +6,7 @@
   <div class="col-md-8" id="item_details">
     <h2><%= @item.name %></h2>
     <p><%= @item.description %></p>
-    <h5>$<%= @item.price %></h5>
+    <h5>Starting Price: <%= number_to_currency(@item.price) %></h5>
 
     <h5>Bid End Time<%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
     <div id="clockdiv">
