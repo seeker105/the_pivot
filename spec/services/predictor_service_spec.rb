@@ -28,4 +28,14 @@ RSpec.describe PredictorService do
     expect(predictor.predict_price).to eq 4
   end
 
+  it "does not allow any negative values into the trained function" do
+    time = DateTime.now
+    item = create(:item, created_at: time, price: 0, end_time: time - 20.second)
+    bid1 = create(:bid, created_at: time , price: 0, item: item)
+    bid2 = create(:bid, created_at: time + 1.second, price: 1, item: item)
+    bid3 = create(:bid, created_at: time + 4.second, price: 2, item: item)
+    predictor = PredictorService.new(item, 0, 1)
+    expect(predictor.predict_price).to eq nil  
+  end
+
 end
