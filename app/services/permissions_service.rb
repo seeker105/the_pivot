@@ -16,6 +16,7 @@ class PermissionsService
     return true if controller == "categories" && action == "show"
     return true if controller == "businesses" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(create new))
+    return true if controller == "application" && action == "get_favicon"
 
     if user
       return true if controller == "bids" && action.in?(%w(index create))
@@ -26,17 +27,15 @@ class PermissionsService
         return true if controller == "platform_admin/dashboard" && action == "show"
         return true if controller == "platform_admin/dashboard" && action == "activate"
         return true if controller == "platform_admin/dashboard" && action == "deactivate"
-
+        return true if controller == "business_admin/users" && action == "show"
+        return true if controller == "business_dashboard" && action == "show"
+        return true if controller == "businesses" && action.in?(%w(edit update))
+        return true if controller == "items" && action.in?(%w(edit update))
       elsif user.admin?
         return true if controller == "business_admin/users" && action == "show"
-        if business && business.admins.include?(user)
-          return true if controller == "business/dashboard" && action == "show"
-          return true if controller == "businesses" && action.in?(%w(edit update))
-          return true if controller == "items" && action.in?(%w(edit update))
-        end
-
-      elsif business && user == business.owner
-
+        return true if controller == "business_dashboard" && action == "show"
+        return true if controller == "businesses" && action.in?(%w(edit update))
+        return true if controller == "items" && action.in?(%w(edit update))
       end
     end
   end

@@ -9,8 +9,18 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @business = Business.find_by(slug: params[:slug])
-    @item = Item.find(params[:id])
+    if current_user.platform_admin?
+      @business = Business.find_by(slug: params[:slug])
+      @item = Item.find(params[:id])
+    else
+      @business = current_user.businesses.find_by(slug: params[:slug])
+      @item = @business.items.find_by(id: params[:id]) if @business
+      if @business && @item
+        render :edit
+      else
+        render file: "public/404"
+      end
+    end
   end
 
   def update

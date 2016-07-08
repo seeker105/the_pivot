@@ -13,7 +13,6 @@ RSpec.describe Business, type: :model do
     it { expect(inactive_business).to respond_to(:active) }
     it { expect(inactive_business).to respond_to(:description) }
     it { expect(inactive_business).to respond_to(:slug) }
-    it { expect(inactive_business).to respond_to(:owner) }
     it { expect(inactive_business).to respond_to(:business_admins) }
     it { expect(inactive_business).to respond_to(:admins) }
     it { expect(inactive_business).to respond_to(:items) }
@@ -24,7 +23,6 @@ RSpec.describe Business, type: :model do
     it { expect(inactive_business).to have_many(:business_admins) }
     it { expect(inactive_business).to have_many(:admins) }
     it { expect(inactive_business).to have_many(:items) }
-    it { expect(inactive_business).to belong_to(:owner) }
   end
 
   it "generates the slug before creation" do

@@ -14,6 +14,7 @@ RSpec.feature "business admin updates items" do
 
     visit business_dashboard_path(business.slug)
     click_link "Update"
+
     visit edit_business_item_path(business.slug, item)
 
     fill_in "item[name]", with: new_name

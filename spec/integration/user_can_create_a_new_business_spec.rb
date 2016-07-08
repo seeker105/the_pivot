@@ -8,8 +8,8 @@ RSpec.feature "Business can be created" do
 
     visit dashboard_path
 
-    expect(page).to have_link("Create New Business")
-    click_link "Create New Business"
+    expect(page).to have_link("Create A New Business")
+    click_link "Create A New Business"
 
     fill_in "business[name]", with: "Cubby Stuffers"
     fill_in "business[description]",

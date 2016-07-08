@@ -1,14 +1,6 @@
 # 6 Users
 puts "Creating Users..."
-admin = User.create!(username: "admin",
-                     password: "admin",
-                     email: "jcasimir@example.com",
-                     name: "Jeff Casimir",
-                     address: "1510 Blake St",
-                     city: "Denver",
-                     state: "CO",
-                     zip: "80111")
-jorge = User.create!(username: "jorge@turing.io",
+jorge = User.create!(username: "jorge",
                      password: "password",
                      email: "jorge@turing.io",
                      name: "Jorge Tellez",
@@ -17,23 +9,7 @@ jorge = User.create!(username: "jorge@turing.io",
                      state: Faker::Address.state_abbr,
                      zip: Faker::Address.zip,
                      platform_admin: true)
-jcasimir = User.create!(username: "jcasimir",
-                        password: "test",
-                        email: "jcasimir@example.com",
-                        name: "Jeff Casimir",
-                        address: "1510 Blake St",
-                        city: "Denver",
-                        state: "CO",
-                        zip: "80111")
-mdao = User.create!(username: "mdao",
-                    password: "test",
-                    email: "mdao@example.com",
-                    name: "Mike Dao",
-                    address: "1510 Denver St",
-                    city: "Blake",
-                    state: "CO",
-                    zip: "80111")
-neight = User.create!(username: "nate@turing.io",
+neight = User.create!(username: "neight",
                       password: "password",
                       email: "nate@turing.io",
                       name: "Nate Allen",
@@ -41,7 +17,7 @@ neight = User.create!(username: "nate@turing.io",
                       city: Faker::Address.city,
                       state: Faker::Address.state_abbr,
                       zip: Faker::Address.zip)
-jmejia = User.create!(username: "jmejia@turing.io",
+jmejia = User.create!(username: "jmejia",
                       password: "password",
                       email: "jmejia@turing.io",
                       name: "Josh Mejia",
@@ -49,6 +25,31 @@ jmejia = User.create!(username: "jmejia@turing.io",
                       city: Faker::Address.city,
                       state: Faker::Address.state_abbr,
                       zip: Faker::Address.zip)
+user = User.create!(username: "user",
+                     password: "password",
+                     email: "bsayler@example.com",
+                     name: "Brian Sayler",
+                     address: "1510 Blake St",
+                     city: "Denver",
+                     state: "CO",
+                     zip: "80111")
+jcasimir = User.create!(username: "jcasimir",
+                        password: "password",
+                        email: "jcasimir@example.com",
+                        name: "Jeff Casimir",
+                        address: "1510 Blake St",
+                        city: "Denver",
+                        state: "CO",
+                        zip: "80111")
+mdao = User.create!(username: "mdao",
+                    password: "password",
+                    email: "mdao@example.com",
+                    name: "Mike Dao",
+                    address: "1510 Denver St",
+                    city: "Blake",
+                    state: "CO",
+                    zip: "80111")
+
 94.times do
   User.create!(username: Faker::Internet.email,
                password: "password",
@@ -66,9 +67,9 @@ puts "Creating Businesses..."
 20.times do |x|
   business = Business.create!(name: Faker::Company.name,
                   description: Faker::Company.catch_phrase,
-                  active: (x < 15),
-                  owner: neight)
-  business.admins << User.find(x+3)
+                  active: (x < 15)
+                  )
+  neight.businesses << business
 end
 puts "Created Businesses"
 
@@ -78,7 +79,7 @@ date = DateTime.now
 storage = Category.create!(name: "Storage")
 item_1 = storage.items.create!(name: "Laser Disc", description: "Make great plates.", price: "5.99", image: "https://visualhunt.com/photos/m/5/laser-and-video-discs-24.jpg", end_time: date.prev_day, status: 0, business_id: rand(1..19))
 item_2 = storage.items.create!(name: "Floppy Disc", description: "Need to store a whopping 1.44 MB of data? This bad boy has got you covered.", price: "5.99", image: "https://visualhunt.com/photos/m/5/day-037-did-floppy-exist-once.jpg", end_time: date.prev_day, status: 0, business_id: rand(1..19))
-item_3 = storage.items.create!(name: "CD", description: "Like ninja stars but better.", price: "2.99", image: "https://visualhunt.com/photos/m/4/cd-dvd-computer-data-shiny-digital-disk.jpg", end_time: date.at_beginning_of_hour, status: 0, business_id: rand(1..19))
+item_3 = storage.items.create!(name: "CD", description: "Like ninja stars but better.", price: "2.99", image: "https://visualhunt.com/photos/m/4/cd-dvd-computer-data-shiny-digital-disk.jpg", end_time: date.next_day, status: 0, business_id: rand(1..19))
 7.times do
   storage.items.create!(name: Faker::Hacker.noun.capitalize,
                        description: Faker::Lorem.sentence,
@@ -199,4 +200,4 @@ Category.create!(name: "Music & Audio")
                                   business_id: rand(1..19))
   end
 end
-puts "Created Categories & Items"
+puts "Created Items & Categories"
