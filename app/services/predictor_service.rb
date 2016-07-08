@@ -9,7 +9,7 @@ class PredictorService
 
   def get_new_thetas
     data = preparer.format_training_data
-    l = Learner.new(0.05, data)
+    l = Learner.new(0.001, data)
     l.decrease_cost(hypothesis)
   end
 
