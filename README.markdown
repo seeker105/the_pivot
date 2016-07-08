@@ -12,7 +12,7 @@ This Rails application took a previous project, an single-tenant ecommerce web a
 
 ### Live Version
 
-You can find a live version of this application on Heroku at: [https://ancient-escarpment-23565.herokuapp.com/](https://ancient-escarpment-23565.herokuapp.com/)
+You can find a live version of this application on Heroku at: [https://litbids.herokuapp.com/](https://litbids.herokuapp.com/)
 
 ### Setup
 
