@@ -38,7 +38,6 @@ RSpec.feature do
     end
 
     scenario "users#create path" do
-      # byebug
       visit new_user_path
 
       within('#site_content') do
@@ -307,10 +306,8 @@ RSpec.feature do
 
       expect(current_path).to eq(platform_admin_dashboard_path)
       within('#site_content') do
-        expect(page).to have_content('')
+        expect(page).to have_content('Platform Admin Dashboard')
       end
-
-
     end
 
     scenario 'businesses#edit' do
@@ -342,76 +339,6 @@ RSpec.feature do
         expect(page).to have_content("Name")
         expect(page).to have_content("Description")
       end
-
     end
-
-
   end # of context 'platform admin'
-
-
-
-
-
 end # of test
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# scenario "checks for a platform admin" do
-#   skip
-#
-# end
-#
-# scenario "checks for a business owner" do
-#   skip
-#   item1 = create(:item, name: "Solid Granite Hipster")
-#   item2 = create(:item, name: "Why the duck crossed the road")
-#   user = create(:user)
-#   # byebug
-#   business = Business.create(name: "Freakonomics", owner: user)
-#
-#   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-#
-#   visit items_path(business_id: business.id)
-#
-#   expect(page).to have_content(item1.name)
-#   expect(page).to have_content(item2.name)
-# end
-#
-# scenario "checks for a business admin" do
-#   skip
-#   item1 = create(:item, name: "Hipchick Granite Hipster")
-#   item2 = create(:item, name: "Why the road crossed the duck")
-#   bus_owner = create(:user)
-#   user = create(:user)
-#   business = Business.create(name: "Rubynomics", owner: bus_owner)
-#   # byebug
-#   business.admins << user
-#
-#   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-#
-#   visit login_path(business_id: business.id)
-#
-#   within ('#login') do
-#     expect(page).to have_content("Username")
-#     expect(page).to have_content("Password")
-#   end
-# end
