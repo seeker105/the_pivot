@@ -8,28 +8,8 @@
     <p><%= @item.description %></p>
     <h5>Starting Price: <%= number_to_currency(@item.price) %></h5>
 
-    <h5>Bid End Time<%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
-    <div id="clockdiv">
-      <div>
-        <span class="days"></span>
-        <div class="smalltext">Days</div>
-      </div>
-      <div>
-        <span class="hours"></span>
-        <div class="smalltext">Hours</div>
-      </div>
-      <div>
-        <span class="minutes"></span>
-        <div class="smalltext">Minutes</div>
-      </div>
-      <div>
-        <span class="seconds"></span>
-        <div class="smalltext">Seconds</div>
-      </div>
-    </div>
+    <%= render partial: "countdown", locals: {item: @item}%>
 
-    <p> <%= Time.now.strftime("%b %e, %l:%M %p %Z")%></p>
-    
     <% if @item.open?  %>
       <% if @item.high_bid == 0.00 %>
       <p>
@@ -55,5 +35,3 @@
   var deadline = new Date(item_end_date);
   initializeClock('clockdiv', deadline)
 </script>
-
-
