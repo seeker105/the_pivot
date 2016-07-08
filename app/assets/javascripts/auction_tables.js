@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('#open_auction').show();
 
   function showOpenAuctions() {
-    $("#open").on("click", function(){
+    $(document).on("click", "#open", function(){
       $("#open_auction").show();
       $("#won_auction").hide();
       $("#lost_auction").hide();
@@ -12,7 +12,7 @@ $(document).ready(function(){
   };
 
   function showLostAuctions() {
-    $("#lost").on("click", function(){
+    $(document).on("click", "#lost", function(){
       $("#lost_auction").show();
       $("#won_auction").hide();
       $("#open_auction").hide();
@@ -20,7 +20,7 @@ $(document).ready(function(){
   };
 
   function showWonAuctions() {
-    $("#won").on("click", function(){
+    $(document).on("click", "#won", function(){
       $("#won_auction").show();
       $("#lost_auction").hide();
       $("#open_auction").hide();

@@ -8,6 +8,10 @@ $(document).ready(function(){
           $("#category-nav").addClass("navbar-fixed-top");
           $("#category-nav").addClass("fix-category-nav");
       } else {
+
+          
+          $("#brand-text").css('color', 'white');
+          $("#brand-text").css('color', 'white');
           $("#main-navbar").css('background-color', 'transparent');
           $("#category-nav").removeClass("navbar-fixed-top");
           $("#category-nav").addClass("navbar-fluid-top");
