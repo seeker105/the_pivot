@@ -6,4 +6,8 @@ module ApplicationHelper
       "None"
     end
   end
+
+  def capitalize(name)
+    name.capitalize
+  end
 end

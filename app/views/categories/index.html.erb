@@ -1,4 +1,14 @@
-<% @categories.each do |category, index| %>
-  <a><img src="assets/images/<%=category.name%>.jpeg" alt=<%= category.name %> /></a>
-  <h2><%= category.name %></h2>
-<% end %>
+<div class="row">
+    <% @categories.each do |category| %>
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="thumbnail">
+          <a><img src=<%=category.image_path%> alt=<%= category.name %> /></a>
+          <div class="caption">
+            <h2><%=link_to capitalize(category.name), category_path(category.id) %></h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+
