@@ -200,4 +200,4 @@ Category.create!(name: "Music & Audio")
                                   business_id: rand(1..19))
   end
 end
-puts "Created Categories & Items"
+puts "Created Items & Categories"

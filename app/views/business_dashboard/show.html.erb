@@ -1,7 +1,9 @@
 <div class="business_header">
 <h2> <%= @business.name %> Dashboard</h2>
 </div>
-<%= link_to "Update Business Information", business_edit_path(@business.slug) %>
+<% if platform_admin? || @business.admins.include?(current_user) %>
+  <%= link_to "Update Business Information", business_edit_path(@business.slug) %>
+<% end %>
 
 <div class="business_items">
   <% if @business.active? %>

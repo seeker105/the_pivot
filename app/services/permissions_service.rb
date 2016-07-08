@@ -16,6 +16,7 @@ class PermissionsService
     return true if controller == "categories" && action == "show"
     return true if controller == "businesses" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(create new))
+    return true if controller == "application" && action == "get_favicon"
 
     if user
       return true if controller == "bids" && action.in?(%w(index create))

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   # Users:
-  resources :users, only: [:new, :index, :create]
+  resources :users, only: [:new, :create]
   get "/user/edit", to: "users#edit"
   patch "/user/edit", to: "users#update"
   get "/dashboard" => "users#show", as: "dashboard"
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # Items and Bids:
   resources :items, only: [:index, :show] do
-    resources :bids, only: [:index, :create]
+    resources :bids, only: [:create]
   end
 
   # Admin Functionality:
