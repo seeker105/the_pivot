@@ -1,7 +1,4 @@
-<% @categories.each do |category| %>
-
-<div id="<%=category.name%>_name" class="col-md-4">
-  <img src="images/<%=category.name%>.jpeg" alt="" />
+<% @categories.each do |category, index| %>
+  <a><img src="assets/images/<%=category.name%>.jpeg" alt=<%= category.name %> /></a>
   <h2><%= category.name %></h2>
-</div>
-<% end  %>
+<% end %>
