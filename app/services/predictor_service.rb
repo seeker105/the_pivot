@@ -14,7 +14,11 @@ class PredictorService
   end
 
   def predict_price
-    new_hypothesis = Hypothesis.new(get_new_thetas[0], get_new_thetas[1])
-    new_hypothesis.function(final_time)
+    if final_time >= 0
+      new_hypothesis = Hypothesis.new(get_new_thetas[0], get_new_thetas[1])
+      new_hypothesis.function(final_time)
+    else
+      nil
+    end
   end
 end
