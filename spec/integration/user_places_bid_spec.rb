@@ -38,11 +38,11 @@ RSpec.feature "user can place a bid on an item" do
 
       visit item_path(item)
 
-      expect(page).to have_content("No current bids")
+      expect(page).to have_content("No bids yet")
       fill_in "bid[price]", with: "10.99"
       click_button("Place Bid")
 
-      expect(page).not_to have_content("No current bids")
+      expect(page).not_to have_content("No bids yet")
       expect(page).to have_content("Highest Bidder: #{user.username}")
       expect(page).to have_content("Highest Bid: $#{user.bids.last.price}")
     end
@@ -55,7 +55,7 @@ RSpec.feature "user can place a bid on an item" do
 
       visit item_path(item1)
 
-      expect(page).to have_content("No current bids")
+      expect(page).to have_content("No bids yet")
       fill_in "bid[price]", with: "10.99"
       click_button("Place Bid")
 
@@ -65,7 +65,7 @@ RSpec.feature "user can place a bid on an item" do
       expect(page).to have_content("Price has already been taken")
 
       visit item_path(item2)
-      expect(page).to have_content("No current bids")
+      expect(page).to have_content("No bids yet")
       fill_in "bid[price]", with: "10.99"
       click_button("Place Bid")
 

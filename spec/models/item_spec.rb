@@ -107,11 +107,25 @@ RSpec.describe Item, type: :model do
   end
 
   it "sets the minimum bid based on price" do
-      item = create(:item, price: 10)
-      expect(item.min_bid).to eq 10
+    item = create(:item, price: 10)
+    expect(item.min_bid).to eq 10
 
-      item = create(:item)
-      bid = create(:bid, item: item, price: 12)
-      expect(item.min_bid).to eq 13
+    item = create(:item)
+    bid = create(:bid, item: item, price: 12)
+    expect(item.min_bid).to eq 13
+  end
+
+  it "can tell if it has a bid" do
+    item = create(:item)
+    expect(item.has_bids?).to be false
+
+    item = create(:item_with_bids)
+    expect(item.has_bids?).to be true
+  end
+
+  it "can update its own status" do
+    item = create(:item, status:  0, end_time: DateTime.now.at_beginning_of_day)
+    item.update_own_status
+    expect(item.status).to eq("closed")
   end
 end

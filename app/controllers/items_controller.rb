@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :update_item_status
+
   def index
     @items = Item.active
   end
@@ -38,5 +40,10 @@ class ItemsController < ApplicationController
 private
   def item_params
     params.require(:item).permit(:name, :description)
+  end
+
+  def update_item_status
+    item = Item.find(params[:id])
+    item.update_own_status
   end
 end

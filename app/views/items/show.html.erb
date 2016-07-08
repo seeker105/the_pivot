@@ -1,50 +1,37 @@
-<div class="row">
-  <div class="col-md-4" id="item_image">
-    <img src="<%= @item.image %>" alt="<%= @item.name %>" class="img-thumbnail"/>
+<div class="page-header">
+  <h1> <%= @item.name %> <small><%= @item.description %></small></h1>
+</div>
+
+<div>
+  <div class="col-md-4" >
+      <img src="<%= @item.image %>" alt="<%= @item.name %>" class="img-thumbnail"/>
   </div>
 
-  <div class="col-md-8" id="item_details">
-    <h2><%= @item.name %></h2>
-    <p><%= @item.description %></p>
+  <div class="col-md-4" id="item_details">
+
     <h5>Starting Price: <%= number_to_currency(@item.price) %></h5>
+    <h5>Auction End Time: <%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
 
-    <h5>Auction End Time<%= format_datetime(@item.end_time)%></h5>
-    <div id="clockdiv">
-      <div>
-        <span class="days"></span>
-        <div class="smalltext">Days</div>
-      </div>
-      <div>
-        <span class="hours"></span>
-        <div class="smalltext">Hours</div>
-      </div>
-      <div>
-        <span class="minutes"></span>
-        <div class="smalltext">Minutes</div>
-      </div>
-      <div>
-        <span class="seconds"></span>
-        <div class="smalltext">Seconds</div>
-      </div>
-    </div>
-
-    <% if @item.open?  %>
-      <% if @item.high_bid == 0.00 %>
-      <p>
-        No current bids
-      </p>
+    <% if @item.open? %>
+      <% if @item.has_bids? %>
+        <%= render partial: "auction_with_bids", locals: {item: @item} %>
+        <%= render partial: "new_bid", locals: {item: @item} %>
       <% else %>
-        Highest Bid: <%= number_to_currency(@item.high_bid) %><br>
-        Highest Bidder: <%= format_bidder(@item.high_bidder) %><br>
-        Predicted Selling Price: <%= predict_price(@item) %>
+        <%= render partial: "auction_without_bids", locals: {item: @item} %>
+        <%= render partial: "new_bid", locals: {item: @item} %>
       <% end %>
-      <%= render partial: "new_bid", locals: {item: @item}%>
     <% else %>
-      <p>
-      This item's auction has ended!
-      </p>
+      <div class="alert alert-warning" role="alert">
+        <p>This item's auction has ended!</p>
+        <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug), class: "alert-link" %>
+      </div>
     <% end  %>
-    <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug) %> </div>
+  </div>
+
+  <div class="col-md-4" id="clock-container">
+    <% if @item.open? %>
+      <%= render partial: "countdown", locals: {item: @item} %>
+    <% end %>
   </div>
 </div>
 
