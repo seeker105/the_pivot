@@ -1,14 +1,14 @@
 <table class="table" id="closed_auction">
-  <caption>Open Auctions</caption>
+  <caption>Closed Auctions</caption>
   <tr>
     <th></th>
     <th>Item</th>
     <th>Item ID</th>
     <th>Selling Price</th>
     <th>Buyer</th>
-    <th>Date Bought</th>
+    <th>Auction End Date</th>
   </tr>
-  <% @business.closed_items.each do |item| %>
+  <% order_items_by_id(@business.closed_items).each do |item| %>
   <tr>
     <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= link_to item.name, item_path(item)%> </td>

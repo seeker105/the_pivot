@@ -15,4 +15,8 @@ module ApplicationHelper
       "Not enough bids yet to make prediction"
     end
   end
+
+  def order_items_by_id(items)
+    items.order(:id)
+  end
 end

@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
   has_many :items, through: :bids
   has_many :business_admins
   has_many :businesses, through: :business_admins
-  has_many :businesses_owned, class_name: "Business",
-                  foreign_key: "owner_id"
 
   validates :username, presence: :true, uniqueness: :true
   validates :password, presence: :true
@@ -32,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.businesses.exists?
+    self.businesses.exists? || self.platform_admin?
   end
 
   def won_items
