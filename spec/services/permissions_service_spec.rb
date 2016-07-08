@@ -191,7 +191,7 @@ RSpec.feature do
 
       visit(dashboard_path)
 
-      click_link("Create New Business")
+      click_link("Create A New Business")
       expect(current_path).to eq(new_business_path)
 
       within('#site_content') do
@@ -206,7 +206,7 @@ RSpec.feature do
 
       visit(dashboard_path)
 
-      click_link("Create New Business")
+      click_link("Create A New Business")
 
       within('#site_content') do
         fill_in 'Business Name', with: "What a biz"
