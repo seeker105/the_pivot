@@ -6,43 +6,42 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-
-  # Basic resources
-  #resources :items, only: [:index, :show]
-  resources :users, only: [:new, :index, :create]
+  # Users:
+  resources :users, only: [:new, :create]
   get "/user/edit", to: "users#edit"
   patch "/user/edit", to: "users#update"
-
-
-  resources :businesses, only: [:index]
-
-  # get '/admin-dashboard', to: 'business_admins#show', as: 'admin_dashboard'
-
-  resources :items, only: [:index, :show] do
-    resources :bids, only: [:index, :create]
-  end
-
-  # User Dashboard
   get "/dashboard" => "users#show", as: "dashboard"
+
+  # Businesses:
+  resources :businesses, only: [:index, :new, :create]
+
+  # Items and Bids:
+  resources :items, only: [:index, :show] do
+    resources :bids, only: [:create]
+  end
 
   # Admin Functionality:
   namespace :platform_admin do
-    get "/dashboard", to: "users#show"
+    get "/dashboard", to: "dashboard#show"
+    get "/activate/:slug", to: "dashboard#activate", as: :activate
+    get "/deactivate/:slug", to: "dashboard#deactivate", as: :deactivate
   end
 
+  # Business admin dashboard:
   namespace :business_admin do
     get "/dashboard" => "users#show"
   end
 
-
+  # Miscellaneous:
   get "/favicon.ico" => "application#get_favicon"
   get "/categories/:id" => "categories#show", as: "category"
 
-  namespace :business, path: "/:slug", as: :business do
-    get "/dashboard", to: "dashboard#show"
+  #Business vanity routes:
+  scope '/:slug', as: :business do
+    get "/", to: 'businesses#show'
+    get "/edit", to: "businesses#edit", as: "edit"
+    patch "/", to: 'businesses#update', as: "update"
+    get "/dashboard", to: "business_dashboard#show"
+    resources :items, only: [:edit, :update]
   end
-
-  get "/:slug/edit", to: "businesses#edit", as: "edit_business"
-  get "/:slug", to: 'businesses#show', as: :business
-  patch "/:slug", to: 'businesses#update', as: "update_business"
 end

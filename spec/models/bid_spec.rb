@@ -25,7 +25,7 @@ RSpec.describe Bid, type: :model do
 
     it do
       expect(bid_instance).to validate_uniqueness_of(:price).
-         scoped_to(:user_id)
+         scoped_to(:user_id, :item_id)
     end
  end
 end

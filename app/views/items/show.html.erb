@@ -14,8 +14,9 @@
         No current bids
       </p>
       <% else %>
-        Highest Bid: <%= @item.high_bid %><br>
-        Highest Bidder: <%= format_bidder(@item.high_bidder) %>
+        Highest Bid: <%= number_to_currency(@item.high_bid) %><br>
+        Highest Bidder: <%= format_bidder(@item.high_bidder) %><br>
+        Predicted Selling Price: <%= predict_price(@item) %>
       <% end %>
       <%= render partial: "new_bid", locals: {item: @item}%>
     <% else %>
@@ -23,6 +24,6 @@
       This item's auction has ended!
       </p>
     <% end  %>
-    <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(@item.business.slug) %> </div>
+    <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug) %> </div>
   </div>
 </div>

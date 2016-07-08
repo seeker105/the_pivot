@@ -11,7 +11,7 @@ RSpec.feature "business info can be updated" do
     updated_business_name = "New Name"
     updated_business_description = "New Description"
 
-    visit business_path(business.slug)
+    visit business_dashboard_path(business.slug)
 
     click_link "Update Business Information"
 

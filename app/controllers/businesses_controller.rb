@@ -26,8 +26,31 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def new
+    @business = Business.new
+  end
+
+  def create
+    user = current_user
+    @business = Business.new(new_business_params)
+    user.businesses << @business
+
+    if @business.save
+      flash[:success] = "#{@business.name} has been created and is pending approval. \
+      Approval process on average takes 1-2 business days."
+      redirect_to dashboard_path
+    else
+      flash.now[:error] = @business.errors.full_messages
+      render :new
+    end
+  end
+
 private
   def business_params
     params.require(:business).permit(:name, :description, :slug)
+  end
+
+  def new_business_params
+    params.require(:business).permit(:name, :description)
   end
 end

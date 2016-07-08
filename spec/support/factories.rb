@@ -25,6 +25,7 @@ FactoryGirl.define do
         create_list(:bid, evaluator.bid_count, user: user)
       end
     end
+
   end
 
   sequence :name do |n|
@@ -47,7 +48,7 @@ FactoryGirl.define do
     price "5.99"
     image "http://i.imgur.com/kgOqHMk.gif"
     status "open"
-    end_time Time.now
+    end_time DateTime.now.next_day
     business
 
     factory :item_with_bids do
@@ -61,7 +62,6 @@ FactoryGirl.define do
     end
   end
 
-
   factory :category do
     name
   end
@@ -70,12 +70,19 @@ FactoryGirl.define do
     "User #{n}"
   end
 
-
-
   factory :business do
     sequence(:name) { |n| "Business Name #{n}"}
     active false
     description "So lit"
-  end
 
+    factory :business_with_items do
+      transient do
+        item_count 3
+      end
+
+      after(:create) do |business, evaluator|
+        create_list(:item, evaluator.item_count, business: business)
+      end
+    end
+  end
 end

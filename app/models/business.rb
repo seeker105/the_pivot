@@ -3,8 +3,6 @@ class Business < ActiveRecord::Base
   has_many :admins, through: :business_admins,
                     class_name: "User",
                     source: "user"
-  belongs_to :owner, class_name: "User",
-                     foreign_key: "owner_id"
   has_many :items
 
   before_create :create_slug
@@ -15,6 +13,10 @@ class Business < ActiveRecord::Base
 
   def closed_items
     self.items.where(status: 1)
+  end
+
+  def status
+    self.active ? "Active" : "Inactive"
   end
 
 private

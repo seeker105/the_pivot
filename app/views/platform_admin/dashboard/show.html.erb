@@ -1,0 +1,31 @@
+<h1>Platform Admin Dashboard</h1>
+
+<div id="active_businesses">
+  <h3 >Active Businesses</h3>
+  <ul>
+    <% @active_businesses.each do |business| %>
+          <li id="<%= business.slug %>" >
+            <h3><%= link_to business.name, business_dashboard_path(business.slug)%></h3>
+            <h4><%= link_to business.description, business_dashboard_path(business.slug) %></h4>
+            Status: <%= business.status %>
+            <%= link_to "Deactivate", platform_admin_deactivate_path(slug: business.slug), class: "deactivate" %>
+          </li>
+    <% end %>
+  </ul>
+</div>
+
+<hr />
+
+<div id="inactive_businesses">
+<h3 >Inactive Businesses</h3>
+  <ul>
+    <% @inactive_businesses.each do |business| %>
+        <li id="<%= business.slug %>" >
+          <h3><%= link_to business.name, business_dashboard_path(business.slug)%></h3>
+          <h4><%= link_to business.description, business_dashboard_path(business.slug) %></h4>
+            Status: <%= business.status %>
+            <%= link_to "Activate", platform_admin_activate_path(slug: business.slug), class:"activate"%>
+         </li>
+    <% end %>
+  </ul>
+</div>

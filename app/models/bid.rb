@@ -7,6 +7,6 @@ class Bid < ActiveRecord::Base
   validates :price, presence: :true
 
   validates_uniqueness_of :price,
-                          scope: :user_id,
+                          scope: [:user_id, :item_id],
                           allow_nil: true
 end
