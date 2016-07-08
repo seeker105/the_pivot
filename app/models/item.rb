@@ -27,6 +27,10 @@ class Item < ActiveRecord::Base
     high_bid > self.price ? high_bid : self.price
   end
 
+  def min_bid
+    high_bid == 0.0 ? self.price : high_bid + 1.0
+  end
+
   def self.update_status
     where(status: 0).where("end_time < ?", DateTime.now).update_all(status: 1)
   end

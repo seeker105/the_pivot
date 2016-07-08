@@ -4,6 +4,7 @@
 <% if platform_admin? || @business.admins.include?(current_user) %>
   <%= link_to "Update Business Information", business_edit_path(@business.slug) %>
 <% end %>
+<%= render partial: "auction_buttons" %>
 
 <div class="business_items">
   <% if @business.active? %>

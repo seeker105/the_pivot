@@ -6,7 +6,7 @@
       <%= form_for ([item, @bid]) do |f| %>
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <%= f.number_field :price, min: (item.high_bid+1.00), class: "form-control" %>
+          <%= f.number_field :price, min: item.min_bid, class: "form-control", step: 0.01 %>
         </div>
         <%= f.submit "Place Bid", class: "btn btn-secondary form-control" %>
       <% end  %>
