@@ -95,6 +95,7 @@ RSpec.feature do
         expect(page).to have_link("Login or Create Account to Bid")
       end
     end
+  end
 
   context "registered user" do
     scenario "sessions#create path" do
