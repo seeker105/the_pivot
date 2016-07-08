@@ -19,8 +19,11 @@ class Item < ActiveRecord::Base
     self.bids.exists? ? self.bids.find_by(price: high_bid).user : nil
   end
 
+  def max_price
+    high_bid > self.price ? high_bid : self.price
+  end
+
   def self.update_status
     where(status: 0).where("end_time < ?", DateTime.now).update_all(status: 1)
   end
-
 end
