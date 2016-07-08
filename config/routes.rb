@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => "items#index"
+  root :to => "categories#index"
 
   # Sessions:
   get '/login', to: 'sessions#new'

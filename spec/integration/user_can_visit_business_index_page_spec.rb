@@ -4,17 +4,17 @@ RSpec.feature "user can view business index" do
   scenario "user visits home page and sees the business index link" do
     visit root_url
 
-    within ("#main-nav") do
-      expect(page).to have_link("Business Index")
+    within ("#category-nav") do
+      expect(page).to have_link("Browse By Business")
     end
   end
 
-  scenario "user clicks 'Business Index' link on home page" do
+  scenario "user clicks 'Browse By Business' link on home page" do
 
     businesses = create_list(:business, 3, active: true)
     visit root_url
 
-    click_link "Business Index"
+    click_link "Browse By Business"
     within ('#site_content') do
       expect(current_path).to eq(businesses_path)
       expect(page).to have_link(businesses[0].name)
@@ -29,7 +29,7 @@ RSpec.feature "user can view business index" do
     businesses << create(:business)
     visit root_url
 
-    click_link "Business Index"
+    click_link "Browse By Business"
     within ('#site_content') do
       expect(current_path).to eq(businesses_path)
       expect(page).to have_link(businesses[0].name)

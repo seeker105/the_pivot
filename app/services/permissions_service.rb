@@ -13,7 +13,7 @@ class PermissionsService
     return true if controller == "sessions" && action == "destroy"
     return true if controller == "items"    && action == "show"
     return true if controller == "items"    && action == "index"
-    return true if controller == "categories" && action == "show"
+    return true if controller == "categories" && action.in?(%w(index show))
     return true if controller == "businesses" && action.in?(%w(index show))
     return true if controller == "users" && action.in?(%w(create new))
     return true if controller == "application" && action == "get_favicon"

@@ -69,7 +69,7 @@ RSpec.feature do
 
       visit root_url
 
-      click_link "Business Index"
+      click_link "Browse By Business"
       expect(current_path).to eq(businesses_path)
 
       within("#site_content") do
@@ -81,11 +81,12 @@ RSpec.feature do
 
 
     scenario 'items#show' do
-      business = create(:business)
+      business = create(:business, active: true)
       item = create(:item)
       business.items << item
 
-      visit root_url
+      visit business_path(business.slug)
+
       click_link(item.name)
 
       expect(current_path).to eq(item_path(id: item.id))
@@ -210,11 +211,12 @@ RSpec.feature do
     scenario 'items#show' do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      business = create(:business)
+      business = create(:business, active: true)
       item = create(:item)
       business.items << item
 
-      visit root_url
+      visit business_path(business.slug)
+
       click_link(item.name)
 
       expect(current_path).to eq(item_path(id: item.id))
