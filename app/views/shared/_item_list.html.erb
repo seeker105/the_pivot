@@ -4,9 +4,9 @@
    <% items.each do |item| %>
    <div class="col-md-4">
      <div id="item-card">
-       <%= link_to (image_tag item.image, class: "img-thumbnail"), item_path(item) %>
+       <%= link_to (image_tag item.image, alt: (item.name + item.id.to_s), class: "img-thumbnail"), item_path(item) %>
        <div id="card-text">
-         <p><%= item.name %> - $<%= item.price %></p>
+         <p><%= link_to item.name, item_path(item) %> - $<%= item.price %></p>
        </div>
      </div>
    </div>

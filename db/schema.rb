@@ -41,13 +41,10 @@ ActiveRecord::Schema.define(version: 20160708035028) do
     t.string   "name"
     t.boolean  "active",      default: false
     t.string   "slug"
-    t.integer  "owner_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "description"
   end
-
-  add_index "businesses", ["owner_id"], name: "index_businesses_on_owner_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -67,6 +64,8 @@ ActiveRecord::Schema.define(version: 20160708035028) do
     t.integer  "status",      default: 0
     t.datetime "end_time"
     t.integer  "business_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "items", ["business_id"], name: "index_items_on_business_id", using: :btree
@@ -89,6 +88,5 @@ ActiveRecord::Schema.define(version: 20160708035028) do
   add_foreign_key "bids", "users"
   add_foreign_key "business_admins", "businesses"
   add_foreign_key "business_admins", "users"
-  add_foreign_key "businesses", "users", column: "owner_id"
   add_foreign_key "items", "businesses"
 end

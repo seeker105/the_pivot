@@ -1,4 +1,4 @@
-class Business::DashboardController < ApplicationController
+class BusinessDashboardController < ApplicationController
   def show
     if current_user.platform_admin?
       @business = Business.find_by(slug: params[:slug])
@@ -12,5 +12,4 @@ class Business::DashboardController < ApplicationController
       render file: "public/404"
     end
   end
-
 end

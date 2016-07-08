@@ -1,15 +1,14 @@
-<table class="table" id="open_auction">
-  <caption>Open Auctions</caption>
+<table class="table" id="closed_auction">
+  <caption>Closed Auctions</caption>
   <tr>
     <th></th>
     <th>Item</th>
     <th>Item ID</th>
-    <th>Current High Bid</th>
-    <th>Current High Bidder</th>
+    <th>Selling Price</th>
+    <th>Buyer</th>
     <th>Auction End Date</th>
-    <th></th>
   </tr>
-  <% @business.open_items.each do |item| %>
+  <% order_items_by_id(@business.closed_items).each do |item| %>
   <tr>
     <td><img src="<%= item.image %>" class="img-thumbnail" id="cart-thumb"></img></td>
     <td><%= link_to item.name, item_path(item)%> </td>
@@ -17,7 +16,6 @@
     <td>$<%= item.high_bid%> </td>
     <td><%= format_bidder(item.high_bidder)%> </td>
     <td><%= item.end_time%> </td>
-    <td> <%= link_to "Update", edit_business_item_path(slug: @business.slug, id: item) %></td>
   </tr>
   <% end %>
 </table>

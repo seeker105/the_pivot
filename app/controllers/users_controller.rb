@@ -3,10 +3,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def index
-    @users = User.all
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,16 +18,7 @@ class UsersController < ApplicationController
 
   def show
     return redirect_to login_path if current_user.nil?
-
     @user = current_user
-
-    if current_user.platform_admin?
-      redirect_to platform_admin_dashboard_path
-    elsif current_user.admin?
-      redirect_to business_admin_dashboard_path
-    else
-      render :show
-    end
   end
 
   def edit
