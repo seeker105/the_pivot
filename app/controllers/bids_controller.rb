@@ -1,5 +1,6 @@
 class BidsController < ApplicationController
-include ActiveSupport::NumberHelper
+  include ActiveSupport::NumberHelper
+
   def create
     @item = Item.find(params[:item_id])
     @bid = @item.bids.new(price: bid_params[:price], user: current_user)
