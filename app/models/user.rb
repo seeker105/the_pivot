@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     self.platform_admin
   end
 
+  def business_admin?
+    self.businesses.exists?
+  end
+
   def admin?
     self.businesses.exists? || self.platform_admin?
   end

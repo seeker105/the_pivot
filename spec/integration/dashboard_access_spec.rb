@@ -37,14 +37,38 @@ RSpec.feature "dashboard access" do
       expect(page).to have_link("Logged in as #{admin.username}")
       expect(page).to have_link("Admin Dashboard")
     end
-    save_and_open_page
 
     click_link "Admin Dashboard"
 
-    save_and_open_page
+    within(".business_list") do
+      expect(page).to have_content(business.name)
+      expect(page).not_to have_content(other_business.name)
+    end
+  end
 
-    within(".business_list")
-    expect(page).to have_content(business.name)
-    expect(page).not_to have_content(other_business.name)
+  scenario "as a platform admin" do
+    admin = create(:user, platform_admin: true)
+    business1 = create(:business)
+    business2 = create(:business)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit root_path
+
+    within("#main-nav") do
+      expect(page).to have_link("Logged in as #{admin.username}")
+      expect(page).to have_link("Admin Dashboard")
+    end
+
+    click_link "Admin Dashboard"
+    expect(current_path).to eq platform_admin_dashboard_path
+
+    within("##{business1.slug}") do
+      expect(page).to have_content(business1.name)
+    end
+
+    within("##{business2.slug}") do
+      expect(page).to have_content(business2.name)
+    end
   end
 end
