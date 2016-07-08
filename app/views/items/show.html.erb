@@ -8,7 +8,29 @@
     <p><%= @item.description %></p>
     <h5>$<%= @item.price %></h5>
 
-    <% if @item.open? %>
+    <h5>Bid End Time<%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
+    <div id="clockdiv">
+      <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
+
+    <p> <%= Time.now.strftime("%b %e, %l:%M %p %Z")%></p>
+    
+    <% if @item.open?  %>
       <% if @item.high_bid == 0.00 %>
       <p>
         No current bids
@@ -27,3 +49,11 @@
     <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug) %> </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var item_end_date = <%= @item.end_time.to_f * 1000 %>
+  var deadline = new Date(item_end_date);
+  initializeClock('clockdiv', deadline)
+</script>
+
+
