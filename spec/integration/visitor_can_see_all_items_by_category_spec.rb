@@ -9,9 +9,7 @@ RSpec.feature "Visitor can see all items by category", :type => :feature do
     visit category_path(category.id)
 
     expect(page).to have_content(items[0].name)
-    expect(page).to have_content(items[0].price)
 
     expect(page).to have_content(items[1].name)
-    expect(page).to have_content(items[1].price)
   end
 end
