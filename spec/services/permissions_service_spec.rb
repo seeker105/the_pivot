@@ -96,16 +96,6 @@ RSpec.feature do
       end
     end
 
-  end # context 'guest user'
-
-
-
-
-#--------------------------------------
-
-
-
-
   context "registered user" do
     scenario "sessions#create path" do
       user = create(:user)
@@ -168,22 +158,18 @@ RSpec.feature do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit(user_edit_path)
 
-
       within('#site_content') do
         fill_in "Username", with: new_username
         fill_in "Password", with: "password"
         fill_in "Confirm Password", with: "password"
         click_button "Update Information"
       end
-
       expect(user.username).to eq('hoorah!')
       expect(current_path).to eq(dashboard_path)
       within("#main-navbar") do
         expect(page).to have_content("Logged in as hoorah!")
       end
     end
-
-    # dashboard_path is tested in 'users#update' and 'sessions#create'
 
     scenario 'businesses#new path' do
       user = create(:user)
@@ -215,7 +201,6 @@ RSpec.feature do
       end
 
       expect(current_path).to eq(dashboard_path)
-
       within(".flash_message") do
         expect(page).to have_content("What a biz has been created and is pending approval. Approval process on average takes 1-2 business days.")
       end
@@ -239,8 +224,6 @@ RSpec.feature do
       end
     end
 
-    # items_path = 'items#index' is aliased (and tested) as root_url
-
     scenario 'bids#create' do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -282,17 +265,7 @@ RSpec.feature do
         expect(page).to have_content("Highest Bid: $10.00")
       end
     end
-
-  end # of context 'registered user'
-
-
-
-
-#-----------------------------------------------------
-
-
-
-
+  end
 
   context "platform admin" do
     scenario 'platform_admin/dashboard#show' do
@@ -390,6 +363,5 @@ RSpec.feature do
         expect(page).to have_content(business2.description)
       end
     end
-
-  end # of context 'platform admin'
-end # of test
+  end
+end
