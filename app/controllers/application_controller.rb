@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def platform_admin?
-    current_user && current_user.platform_admin
+    current_user.platform_admin
   end
 
 private
