@@ -23,7 +23,7 @@ class Item < ActiveRecord::Base
     high_bid > self.price ? high_bid : self.price
   end
 
-  def max_bid
+  def min_bid
     high_bid == 0.0 ? self.price : high_bid + 1.0
   end
 
