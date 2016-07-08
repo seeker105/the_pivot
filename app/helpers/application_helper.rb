@@ -7,6 +7,10 @@ module ApplicationHelper
     end
   end
 
+  def capitalize(name)
+    name.capitalize
+  end
+
   def predict_price(item)
     if item.bids.count >= 3
       predictor = PredictorService.new(item)

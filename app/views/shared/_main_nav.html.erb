@@ -1,15 +1,14 @@
 <nav class ="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid" id="main-navbar">
     <div class="navbar-header" id="site-header">
-      <%= link_to image_tag('icon_new.png', id: "icon"), root_path %>
       <div id="brand-text">
+        <span class="glyphicon glyphicon-fire"></span>
         <div id="site-title">
-          HIPTIQUE
+          <%= link_to "LitBids", root_path  %>
         </div>
-      </div>
+      </div><br><br>
     </div>
     <ul class="nav navbar-nav navbar-right" id="main-nav">
-        <li><%= link_to "Business Index", businesses_path %></li>
       <% if current_user %>
         <% if platform_admin? %>
           <li><%= link_to "Admin Dashboard", platform_admin_dashboard_path %></li>
@@ -22,7 +21,6 @@
       <% else %>
         <li><%= link_to "Log In", login_path %></li>
       <% end  %>
-
     </ul>
   </div>
 </nav>
