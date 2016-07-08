@@ -1,0 +1,5 @@
+<div>
+  <p>Highest Bid: <%= number_to_currency(@item.high_bid) %></p>
+  <p>Highest Bidder: <%= format_bidder(@item.high_bidder) %></p>
+  <p>Predicted Selling Price: <%= predict_price(@item) %></p>
+</div>

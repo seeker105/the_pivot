@@ -7,24 +7,17 @@
     <h2><%= @item.name %></h2>
     <p><%= @item.description %></p>
     <h5>Starting Price: <%= number_to_currency(@item.price) %></h5>
+    <h5>Bid End Time<%= @item.end_time.strftime("%b %e, %l:%M %p %Z")%></h5>
 
-    <%= render partial: "countdown", locals: {item: @item}%>
-
-    <% if @item.open?  %>
-      <% if @item.high_bid == 0.00 %>
-      <p>
-        No current bids
-      </p>
+    <% if @item.open? && @item.has_bids? %>
+        <p>No current bids</p>
       <% else %>
-        Highest Bid: <%= number_to_currency(@item.high_bid) %><br>
-        Highest Bidder: <%= format_bidder(@item.high_bidder) %><br>
-        Predicted Selling Price: <%= predict_price(@item) %>
+        <%= render partial: "countdown", locals: {item: @item} %>
+        <%= render partial: "auction_with_bids", locals: {item: @item} %>
       <% end %>
-      <%= render partial: "new_bid", locals: {item: @item}%>
+    <%= render partial: "new_bid", locals: {item: @item}%>
     <% else %>
-      <p>
-      This item's auction has ended!
-      </p>
+      <p>This item's auction has ended!</p>
     <% end  %>
     <div> <%= link_to "Browse more items from #{@item.business.name}", business_path(slug: @item.business.slug) %> </div>
   </div>
