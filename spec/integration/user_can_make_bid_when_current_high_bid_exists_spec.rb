@@ -9,7 +9,7 @@ RSpec.feature "user can place a bid on an item when a bid already exists" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
     visit item_path(item)
-    expect(page).to have_content("No current bids")
+    expect(page).to have_content("No bids yet")
     fill_in "bid[price]", with: "10.99"
     click_button("Place Bid")
 
@@ -37,14 +37,14 @@ RSpec.feature "user can place a bid on an item when a bid already exists" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
     visit item_path(item)
-    expect(page).to have_content("No current bids")
+    expect(page).to have_content("No bids yet")
     fill_in "bid[price]", with: "10.99"
     click_button("Place Bid")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user2)
 
     visit item_path(item)
-    expect(page).not_to have_content("No current bids")
+    expect(page).not_to have_content("No bids yet")
     expect(page).to have_content("Highest Bidder: #{user1.username}")
     expect(page).to have_content("Highest Bid: $#{user1.bids.last.price}")
 

@@ -8,12 +8,12 @@ RSpec.feature "item bid info display" do
 
     visit item_path(item)
 
-    within(".item_details") do
-      expect(page).to have_css("#clockdiv")
+    within("#clock-container") { expect(page).to have_css("#clockdiv") }
+    within("#item_details") do
       expect(page).to have_content("Highest Bid: No bids yet")
       expect(page).to have_content("Highest Bidder: No high bidder yet")
       expect(page).to have_content("Predicted Selling Price")
-      expect(page).to have_button("Place bid")
+      expect(page).to have_button("Place Bid")
     end
   end
 
@@ -23,12 +23,14 @@ RSpec.feature "item bid info display" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     bid = create(:bid, item: item, user: user)
 
-    within(".item_details") do
-      expect(page).to have_css("#clockdiv")
+    visit item_path(item)
+
+    within("#clock-container") { expect(page).to have_css("#clockdiv") }
+    within("#item_details") do
       expect(page).to have_content("Highest Bid: $#{bid.price}")
       expect(page).to have_content("Highest Bidder: #{user.username}")
       expect(page).to have_content("Predicted Selling Price")
-      expect(page).to have_button("Place bid")
+      expect(page).to have_button("Place Bid")
     end
   end
 
@@ -36,14 +38,15 @@ RSpec.feature "item bid info display" do
     item = create(:item, status: "closed")
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    bid = create(:bid, item: item, user: user)
 
     visit item_path(item)
 
-    within(".item_details") do
-      expect(page).not_to have_css("#clockdiv")
+    within("#clock-container") { expect(page).to_not have_css("#clockdiv") }
+    within("#item_details") do
       expect(page).not_to have_content("Highest Bid: $#{bid.price}")
       expect(page).not_to have_content("Highest Bidder: #{user.username}")
-      expect(page).to have_content("Predicted Selling Price")
+      expect(page).not_to have_content("Predicted Selling Price")
       expect(page).not_to have_button("Place bid")
 
       expect(page).to have_content("This item's auction has ended")
