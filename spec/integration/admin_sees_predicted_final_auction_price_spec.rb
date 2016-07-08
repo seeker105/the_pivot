@@ -14,7 +14,7 @@ RSpec.feature "admin sees predicted final auction price" do
     visit item_path(item)
 
     within("#item_details") do
-      expect(page).to have_content("Predicted Selling Price: $")
+      expect(page).to have_content("Predicted Selling Price: $5")
     end
   end
 
