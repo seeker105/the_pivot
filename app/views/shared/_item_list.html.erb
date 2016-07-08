@@ -6,7 +6,7 @@
      <div id="item-card">
        <%= link_to (image_tag item.image, alt: (item.name + item.id.to_s), class: "img-thumbnail"), item_path(item) %>
        <div id="card-text">
-         <p><%= link_to item.name, item_path(item) %> - $<%= item.price %></p>
+         <p><%= link_to item.name, item_path(item) %></p>
        </div>
      </div>
    </div>
