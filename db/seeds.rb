@@ -170,7 +170,7 @@ Category.create!(name: "books", image_path: "http://434985940.r.cdnsun.net/skuaw
 Category.create!(name: "antiques", image_path: "http://434985940.r.cdnsun.net/skuawk/photo/objects/krivec-22.jpg")
 Category.create!(name: "digital", image_path: "http://434985940.r.cdnsun.net/skuawk/photo/technology/braun.jpg")
 Category.create!(name: "analog", image_path: "http://434985940.r.cdnsun.net/skuawk/photo/technology/krzysztof-1.jpg")
-Category.create!(name: "cars", image_path: "http://434985940.r.cdnsun.net/skuawk/photo/objects/fornalczyk-40.jpg")
+Category.create!(name: "cars", image_path: "https://c2.staticflickr.com/2/1590/25991857260_1078ecf2fb_o.jpg")
 Category.create!(name: "music", image_path: "http://434985940.r.cdnsun.net/skuawk/photo/technology/krzysztof-2.jpg")
 
 
