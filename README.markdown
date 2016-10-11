@@ -39,7 +39,6 @@ Some of the main features of the app include:
 * username: `user`
 * password: `password`
 
-
 Default users can... | Screenshot
 :----   |  :------:
 Browse items by category and by business | <img src="http://imgur.com/klnxv54.png" alt="users browses items by category and business" width="600">
