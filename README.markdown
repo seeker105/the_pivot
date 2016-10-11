@@ -36,24 +36,36 @@ Some of the main features of the app include:
 #### Default Users
   Users can:
   - browse items by category and by business
+  ![users browses items by category and business](http://imgur.com/klnxv54)
   - bid on items from multiple businesses
+  ![user bids on items](http://imgur.com/PC5C9jb)
   - win items if they are the high bidder when the auction closes
   - view their auction information, including open auctions, auctions lost, and auctions won, on their dashboard
-  - update their users information
-  - create a business
+  ![user wins items when they are the highest bidder when auction closes]()
+  ![user views auction information on their dashboard](http://imgur.com/MBzoNtn)
+  - update their profile information
+  ![user updates their information]()
+  - create a business (Businesses are not active until the platform admin activates them.)
+  ![user creates a business]()
 
 #### Business Admins
   Business admins can:
   - view a list of their businesses from their admin dashboard
+  ![business admin views businesses they own](http://imgur.com/VdytaPE)
   - view the business dashboards of all of their businesses to see item information
+  ![business admin sees their business' dashboards](http://imgur.com/RNeX6mq)
   - update business information
+  ![business admin can update business information](http://imgur.com/NZfgky4)
   - update item information for items that belong to their business
+  ![business admin updates item information for their businesses](http://imgur.com/Dlsqmj2)
   - perform any actions that default users can perform
 
 #### Platform Admins
   Platform admins can:
   - view a list of all businesses from their admin dashboard
+  ![admins can view all their businesses](http://imgur.com/FifbH45)
   - activate and deactivate businesses from their admin dashboard
+  ![admins can deactivate and activate businesses](http://imgur.com/jzp4kS4)
   - perform any actions that default users and business admins can perform
 
 #### Machine Learning Feature:
