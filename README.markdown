@@ -35,6 +35,11 @@ Some of the main features of the app include:
 
 ### Default Users
 
+#### Login as a default user
+* username: `user`
+* password: `password`
+
+
 Default users can... | Screenshot
 :----   |  :------:
 Browse items by category and by business | <img src="http://imgur.com/klnxv54.png" alt="users browses items by category and business" width="600">
@@ -43,13 +48,20 @@ Access their dashboard to view auction information, including open auctions, auc
 
 ### Business Admins
 
+#### Login as a business admin
+* username: `business_admin`
+* password: `password`
+
 Business admins can... | Screenshot
 :----   |  :------:
 View a list of their businesses from their admin dashboard | <img src="http://imgur.com/VdytaPE.png" alt="business admin views businesses they own" width="600">
 View the business dashboards of all of their businesses. From the business dashboard, they can update the business information and see and update items belonging to that business. | <img src="http://imgur.com/RNeX6mq.png" alt="business admin sees their business' dashboards" width="600">
 
-
 ### Platform Admins
+
+#### Login as a platform admin
+* username: `platform_admin`
+* password: `password`
 
 Platform admins can... | Screenshot
 :----   |  :------:
