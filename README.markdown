@@ -1,20 +1,20 @@
 # LitBids
 ## Built with Ruby on Rails
 
-### Development Team
+## Development Team
 [Erin Greenhalgh](https://github.com/ErinGreenhalgh), [Brian Sayler](https://github.com/saylerb), [Chris Soden](https://github.com/seeker105)
 
 This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io).
 
-### Overview
+## Overview
 
 This Rails application took a previous project, an single-tenant ecommerce web application, and pivoted it to  a multi-tenancy application, implementing a bidding system instead of a typical cart-and-orders system. Users can bid on and win multiple items from different businesses. They can also create businesses to become business admins and monitor the item action for theri businesses. Platform admins have access to every business on the app and change business status between active and inactive.
 
-### Live Version
+## Live Version
 
 You can find a live version of this application on Heroku at: [https://litbids.herokuapp.com/](https://litbids.herokuapp.com/)
 
-### Setup
+## Setup
 
 To set up a local copy of this project, perform the following:
 
@@ -29,44 +29,31 @@ To set up a local copy of this project, perform the following:
     - There are items in the seed data with an auction end time in the past. There is a Heroku scheduler that will run a rake task to close open auctions every hour. To manually close these auctions up app startup, run `heroku run rake auction:update_status`.
   5. Run the application in the dev environment by running `rails s`
 
-### App Features
+## App Features
 
 Some of the main features of the app include:
 
-#### Default Users
-  Users can:
-  - browse items by category and by business
-  ![users browses items by category and business](http://imgur.com/klnxv54.png)
-  - bid on items from multiple businesses
-  ![user bids on items](http://imgur.com/PC5C9jb.png)
-  - win items if they are the high bidder when the auction closes
-  - view their auction information, including open auctions, auctions lost, and auctions won, on their dashboard
-  ![user wins items when they are the highest bidder when auction closes]()
-  ![user views auction information on their dashboard](http://imgur.com/MBzoNtn.png)
-  - update their profile information
-  ![user updates their information](#)
-  - create a business (Businesses are not active until the platform admin activates them.)
-  ![user creates a business](#)
+### Default Users
 
-#### Business Admins
-  Business admins can:
-  - view a list of their businesses from their admin dashboard
-  ![business admin views businesses they own](http://imgur.com/VdytaPE.png)
-  - view the business dashboards of all of their businesses to see item information
-  ![business admin sees their business' dashboards](http://imgur.com/RNeX6mq.png)
-  - update business information
-  ![business admin can update business information](http://imgur.com/NZfgky4.png)
-  - update item information for items that belong to their business
-  ![business admin updates item information for their businesses](http://imgur.com/Dlsqmj2.png)
-  - perform any actions that default users can perform
+Default users can... | Screenshot
+:----   |  :------:
+Browse items by category and by business | <img src="http://imgur.com/klnxv54.png" alt="users browses items by category and business" width="600">
+Bid on items from multiple businesses| <img src="http://imgur.com/PC5C9jb.png" alt="user bids on items" width="600">
+Access their dashboard to view auction information, including open auctions, auctions lost, and auctions won. They can also update thier profile information or create a business from their dashboard. | <img src="http://imgur.com/MBzoNtn.png" alt="user wins items when they are the highest bidder when auction closes"  width="600">
 
-#### Platform Admins
-  Platform admins can:
-  - view a list of all businesses from their admin dashboard
-  ![admins can view all their businesses](http://imgur.com/FifbH45.png)
-  - activate and deactivate businesses from their admin dashboard
-  ![admins can deactivate and activate businesses](http://imgur.com/jzp4kS4.png)
-  - perform any actions that default users and business admins can perform
+### Business Admins
+
+Business admins can... | Screenshot
+:----   |  :------:
+View a list of their businesses from their admin dashboard | <img src="http://imgur.com/VdytaPE.png" alt="business admin views businesses they own" width="600">
+View the business dashboards of all of their businesses. From the business dashboard, they can update the business information and see and update items belonging to that business. | <img src="http://imgur.com/RNeX6mq.png" alt="business admin sees their business' dashboards" width="600">
+
+
+### Platform Admins
+
+Platform admins can... | Screenshot
+:----   |  :------:
+View a list of all businesses from their admin dashboard. From the platform admin dashboard, they can activate and deactivate businesses. | <img src="http://imgur.com/FifbH45.png" alt="admins can view all their businesses" width="600">
 
 #### Machine Learning Feature:
   We have implemented a rudimentary machine learning feature that predicts the final selling price of an item.
