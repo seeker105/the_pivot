@@ -39,7 +39,7 @@ Default users can... | Screenshot
 :----   |  :------:
 Browse items by category and by business | <img src="http://imgur.com/klnxv54.png" alt="users browses items by category and business" width="600">
 Bid on items from multiple businesses| <img src="http://imgur.com/PC5C9jb.png" alt="user bids on items" width="600">
-Access their dashboard to view auction information, including open auctions, auctions lost, and auctions won. They can also update thier profile information or create a business from their dashboard. | <img src="http://imgur.com/MBzoNtn.png" alt="user wins items when they are the highest bidder when auction closes"  width="600">
+Access their dashboard to view auction information, including open auctions, auctions lost, and auctions won. They can also update their profile information or create a business from their dashboard. | <img src="http://imgur.com/MBzoNtn.png" alt="user wins items when they are the highest bidder when auction closes"  width="600">
 
 ### Business Admins
 
@@ -55,7 +55,7 @@ Platform admins can... | Screenshot
 :----   |  :------:
 View a list of all businesses from their admin dashboard. From the platform admin dashboard, they can activate and deactivate businesses. | <img src="http://imgur.com/FifbH45.png" alt="admins can view all their businesses" width="600">
 
-#### Machine Learning Feature:
+### Machine Learning Feature:
   We have implemented a rudimentary machine learning feature that predicts the final selling price of an item.
   - The algorithm takes in a training set of data, with each data point representing one bid. The x value is the time elapsed since the auction start and the y value is the price of the bid.
   - It then generates a trained function that can take in an x value, the amount of time elapsed between auction start and auction end, and returns a y value that represents the predicted price of the item at auction end.
